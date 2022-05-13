@@ -1,0 +1,18 @@
+.loading-loading{
+  display: inline-block;
+}
+.loading-animation-loading {
+  animation: keyframe-loading 2s ease infinite;
+}
+
+@keyframes keyframe-loading {
+  0% {
+    transform: rotate(0);
+  }
+  40% {
+    transform: rotate(-30deg);
+  }
+  45%{
+    transform: rotate(0);
+  }
+}

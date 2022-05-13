@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "article",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/Yuya/Desktop/berry/aoya-cafe-berry.com/amplify/backend/api/article/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authaoyacafeberrycom232c3c3c"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2023-05-13T07:36:57.646Z",
+        "keyDescription": "public"
+      }
+    ]
+  }
+}

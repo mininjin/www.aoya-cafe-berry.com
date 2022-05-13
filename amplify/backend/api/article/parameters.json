@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "article",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authaoyacafeberrycom232c3c3c",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
