@@ -7,7 +7,18 @@ import {
   faFax,
   faCaretLeft,
   faCaretRight,
+  faCaretUp,
+  faCaretDown,
   faArrowDown,
+  faEye,
+  faEyeSlash,
+  faEnvelope,
+  faLock,
+  faSpinner,
+  faKey,
+  faPlus,
+  faArrowRotateRight,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -16,16 +27,27 @@ import {
 import FontAwesomeIcon from "./FontAwesomeIcon.vue";
 
 library.add(
+  faArrowRotateRight,
+  faHome,
+  faKey,
+  faEnvelope,
+  faLock,
+  faSpinner,
   faBars,
   faXmark,
   faCaretLeft,
   faCaretRight,
+  faCaretUp,
+  faCaretDown,
   faCircleDown,
+  faEye,
+  faEyeSlash,
   faPhoneFlip,
   faFax,
   faInstagramSquare,
   faFacebook,
-  faArrowDown
+  faArrowDown,
+  faPlus
 );
 
 export { FontAwesomeIcon };

@@ -2,6 +2,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCalenderDate = /* GraphQL */ `
+  mutation CreateCalenderDate(
+    $input: CreateCalenderDateInput!
+    $condition: ModelCalenderDateConditionInput
+  ) {
+    createCalenderDate(input: $input, condition: $condition) {
+      id
+      date
+      description
+      isRest
+      isHoliday
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateCalenderDate = /* GraphQL */ `
+  mutation UpdateCalenderDate(
+    $input: UpdateCalenderDateInput!
+    $condition: ModelCalenderDateConditionInput
+  ) {
+    updateCalenderDate(input: $input, condition: $condition) {
+      id
+      date
+      description
+      isRest
+      isHoliday
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteCalenderDate = /* GraphQL */ `
+  mutation DeleteCalenderDate(
+    $input: DeleteCalenderDateInput!
+    $condition: ModelCalenderDateConditionInput
+  ) {
+    deleteCalenderDate(input: $input, condition: $condition) {
+      id
+      date
+      description
+      isRest
+      isHoliday
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createArticle = /* GraphQL */ `
   mutation CreateArticle(
     $input: CreateArticleInput!
@@ -9,14 +57,18 @@ export const createArticle = /* GraphQL */ `
   ) {
     createArticle(input: $input, condition: $condition) {
       id
+      type
+      publishedYearMonth
       publishedAt
-      title
       content
-      thumbnail
+      title
+      thumbnail {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
-      owner
-      editors
     }
   }
 `;
@@ -27,14 +79,18 @@ export const updateArticle = /* GraphQL */ `
   ) {
     updateArticle(input: $input, condition: $condition) {
       id
+      type
+      publishedYearMonth
       publishedAt
-      title
       content
-      thumbnail
+      title
+      thumbnail {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
-      owner
-      editors
     }
   }
 `;
@@ -45,14 +101,18 @@ export const deleteArticle = /* GraphQL */ `
   ) {
     deleteArticle(input: $input, condition: $condition) {
       id
+      type
+      publishedYearMonth
       publishedAt
-      title
       content
-      thumbnail
+      title
+      thumbnail {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
-      owner
-      editors
     }
   }
 `;

@@ -11,13 +11,19 @@
 }
 
 :root {
-  --theme-color: #ffce9f;
+  /* colors */
+  --theme-color: #ffe6cc;
   --sub-color: #a61c00;
   --sub-color-5: #a61c0080;
   --header-color: #ffe4e1;
   --header-color-75: #ffe4e1bf;
+  --tertiary-color: #f3d2c1;
+  --submit-color: #f582ae;
+  --input-color: #ccc;
+  --file-color: #8bd3dd;
+  /* fonts */
   --font-strong: "Potta One", cursive;
-  --font-header: 'Klee One', cursive;
+  --font-header: "Klee One", cursive;
 }
 
 body {

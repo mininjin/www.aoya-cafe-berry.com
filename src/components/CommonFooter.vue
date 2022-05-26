@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+import { ROUTE } from "@/router"
+import { COPYRIGHT } from "@/constants"
+const scrollToTop = () => window.scrollTo({ top: 0 });
 </script>
 
 <template>
-  <div class="bg-sub text-white">
+  <footer class="bg-sub text-white">
     <div class="relative">
       <img src="@/assets/images/cactus.webp" alt="サボテン"
         class="w-full object-contain md:max-h-52 md:object-cover md:object-center" />
@@ -54,7 +57,7 @@
       <div class="text-center w-full mx-auto max-w-xl mb-10">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1148.840771772981!2d134.01562977250657!3d35.46933897034134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3555e9814ed4444f%3A0x1e8449d755300897!2scafe%20Berry!5e0!3m2!1sja!2sjp!4v1616407325995!5m2!1sja!2sjp"
-          :style="{ border: 0 }" allowFullScreen="" loading="lazy" class="w-full"></iframe>
+          :style="{ border: 0 }" allowFullScreen="" loading="lazy" class="w-full" title="Google Map"></iframe>
       </div>
       <div class="px-3">
         <div class="text-3xl mb-4 font-bold">お問合せ</div>
@@ -71,6 +74,8 @@
         </div>
       </div>
     </div>
-    <p class="text-sm text-right p-2">© 2022 Aoya cafe Berry</p>
-  </div>
+    <p class="text-sm text-right p-2" @click="">
+      <router-link :to="ROUTE.EDIT" @click="scrollToTop">{{ COPYRIGHT }}</router-link>
+    </p>
+  </footer>
 </template>

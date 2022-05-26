@@ -1,12 +1,21 @@
 {
+  "auth": {
+    "aoyacafeberrydea84a31": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
   "api": {
-    "article": {
+    "aoyacafeberry": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "aoyacafeberrycom232c3c3c",
+          "resourceName": "aoyacafeberrydea84a31",
           "attributes": [
             "UserPoolId"
           ]
@@ -17,15 +26,18 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authaoyacafeberrycom232c3c3c"
+              "userPoolId": "authaoyacafeberrydea84a31"
             }
           },
           "additionalAuthenticationProviders": [
             {
+              "authenticationType": "AWS_IAM"
+            },
+            {
               "authenticationType": "API_KEY",
               "apiKeyConfig": {
-                "apiKeyExpirationDays": 365,
-                "apiKeyExpirationDate": "2023-05-13T07:36:57.646Z",
+                "apiKeyExpirationDays": 7,
+                "apiKeyExpirationDate": "2022-06-02T05:02:23.176Z",
                 "description": "public"
               }
             }
@@ -34,39 +46,17 @@
       }
     }
   },
-  "auth": {
-    "aoyacafeberrycom232c3c3c": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false,
-      "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
-        },
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
-      }
-    }
-  },
   "storage": {
-    "resource": {
+    "resources": {
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
+    }
+  },
+  "hosting": {
+    "S3AndCloudFront": {
+      "service": "S3AndCloudFront",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

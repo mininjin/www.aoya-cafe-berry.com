@@ -1,10 +1,24 @@
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, provide } from "vue";
 import { fadeOutLoading } from "./plugins/animation";
+import article, { ArticleStateKey } from "@/store/article"
+import webfontloader from "webfontloader"
+
+provide(ArticleStateKey, article());
+
 // on mounted
-onMounted(() => {
-  fadeOutLoading();
+onMounted(async () => {
+  await new Promise<void>((resolve, reject) => {
+    webfontloader.load({
+      google: {
+        families: ["Zen Maru Gothic", "Potta One", "Klee One:600"]
+      },
+      active: resolve, inactive: reject
+    })
+  });
+  await fadeOutLoading();
 });
+
 </script>
 
 <template>

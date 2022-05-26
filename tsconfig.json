@@ -27,8 +27,7 @@
     "src/**/*.js",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "src/aws-exports.js"
+    "src/**/*.vue"
   ],
   "references": [
     {

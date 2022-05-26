@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { ImagePayload } from "@/@types/index";
 import { TOP_IMAGE_PATH } from "@/constants/index";
 import { defineComponent, onMounted, ref, } from "vue";
@@ -69,32 +69,25 @@ const IMAGE_LIST: (ImagePayload & { message: ImageMessage, reversed?: boolean })
   },
 ];
 
-export default defineComponent({
-  setup() {
-    const message = ref<string[]>([]);
-    const reversed = ref<boolean>(false);
+const message = ref<string[]>([]);
+const reversed = ref<boolean>(false);
 
-    onMounted(() => {
-      let index = 0;
-      const setMessage = () => {
-        // enter
-        setTimeout(() => {
-          reversed.value = IMAGE_LIST[index].reversed ?? false
-          message.value = IMAGE_LIST[index].message;
-        }, ANIMATION_DURATION * 0.2 - 1000);
-        // leave
-        setTimeout(() => {
-          message.value = []
-          index = (index + 1) % IMAGE_LIST.length;
-        }, ANIMATION_DURATION - 1000)
-      }
-      setMessage();
-      setInterval(setMessage, ANIMATION_DURATION);
-    });
-
-    return { ANIMATION_DURATION, IMAGE_LIST, message, reversed };
-  },
-  components: { ImageSlideshow },
+onMounted(() => {
+  let index = 0;
+  const setMessage = () => {
+    // enter
+    setTimeout(() => {
+      reversed.value = IMAGE_LIST[index].reversed ?? false
+      message.value = IMAGE_LIST[index].message;
+    }, ANIMATION_DURATION * 0.2 - 1000);
+    // leave
+    setTimeout(() => {
+      message.value = []
+      index = (index + 1) % IMAGE_LIST.length;
+    }, ANIMATION_DURATION - 1000)
+  }
+  setMessage();
+  setInterval(setMessage, ANIMATION_DURATION);
 });
 </script>
 

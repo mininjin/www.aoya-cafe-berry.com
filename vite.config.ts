@@ -45,6 +45,7 @@ export default defineConfig(({ mode }) => {
           short_name: env.VITE_SITE_NAME,
           description: env.VITE_DESCRIPTION,
           theme_color: env.VITE_THEME_COLOR,
+          background_color: "#ffffff",
           icons: [
             {
               src: "android-chrome-192x192.png",
@@ -75,6 +76,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         "@/": `${__dirname}/src/`,
         "@types/": `${__dirname}/@type/`,
+        "./runtimeConfig": "./runtimeConfig.browser",
       },
     },
   };

@@ -1,20 +1,44 @@
 {
-  "dev": {
+  "prod": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-aoyacafeberrycom-dev-123835-authRole",
-      "UnauthRoleArn": "arn:aws:iam::983035574532:role/amplify-aoyacafeberrycom-dev-123835-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::983035574532:role/amplify-aoyacafeberrycom-dev-123835-authRole",
+      "AuthRoleName": "amplify-aoyacafeberry-prod-142048-authRole",
+      "UnauthRoleArn": "arn:aws:iam::983035574532:role/amplify-aoyacafeberry-prod-142048-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::983035574532:role/amplify-aoyacafeberry-prod-142048-authRole",
       "Region": "ap-northeast-1",
-      "DeploymentBucketName": "amplify-aoyacafeberrycom-dev-123835-deployment",
-      "UnauthRoleName": "amplify-aoyacafeberrycom-dev-123835-unauthRole",
-      "StackName": "amplify-aoyacafeberrycom-dev-123835",
-      "StackId": "arn:aws:cloudformation:ap-northeast-1:983035574532:stack/amplify-aoyacafeberrycom-dev-123835/2cc646b0-d26e-11ec-9d1f-0e6a0c0669ab",
-      "AmplifyAppId": "d31s0qyv4hawnj"
+      "DeploymentBucketName": "amplify-aoyacafeberry-prod-142048-deployment",
+      "UnauthRoleName": "amplify-aoyacafeberry-prod-142048-unauthRole",
+      "StackName": "amplify-aoyacafeberry-prod-142048",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:983035574532:stack/amplify-aoyacafeberry-prod-142048/72d57b20-d733-11ec-9080-0ab6da7d0953",
+      "AmplifyAppId": "dfa7qgph251uj"
     },
     "categories": {
       "auth": {
-        "true": {},
-        "aoyacafeberrycom232c3c3c": {}
+        "aoyacafeberry9de9a44d": {
+          "userPoolId": "ap-northeast-1_siHaTR4Lc",
+          "userPoolName": "admine25ef248_userpool_e25ef248-prod",
+          "webClientId": "2ad8ejhpbtlncikt7mkkuqtcso",
+          "nativeClientId": "2ad8ejhpbtlncikt7mkkuqtcso",
+          "identityPoolId": "ap-northeast-1:e44eb70d-c865-4ba7-9cd6-73137f27962f",
+          "identityPoolName": "0ta-web",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::983035574532:role/Cognito_0tawebAuth_Role",
+          "authRoleName": "Cognito_0tawebAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::983035574532:role/Cognito_0tawebUnauth_Role",
+          "unauthRoleName": "Cognito_0tawebUnauth_Role"
+        },
+        "aoyacafeberrydea84a31": {
+          "userPoolId": "ap-northeast-1_siHaTR4Lc",
+          "userPoolName": "admine25ef248_userpool_e25ef248-prod",
+          "webClientId": "2ad8ejhpbtlncikt7mkkuqtcso",
+          "nativeClientId": "2ad8ejhpbtlncikt7mkkuqtcso",
+          "identityPoolId": "ap-northeast-1:e44eb70d-c865-4ba7-9cd6-73137f27962f",
+          "identityPoolName": "0ta-web",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::983035574532:role/Cognito_0tawebAuth_Role",
+          "authRoleName": "Cognito_0tawebAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::983035574532:role/Cognito_0tawebUnauth_Role",
+          "unauthRoleName": "Cognito_0tawebUnauth_Role"
+        }
       }
     }
   }

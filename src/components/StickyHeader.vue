@@ -3,8 +3,10 @@
   }`">
     <div class="flex items-center py-2 px-4 w-full bg-header">
       <div class="flex items-center flex-grow-0 text-left">
-        <img src="@/assets/logo.svg" alt="ロゴ" class="h-10 object-contain rounded-xl overflow-hidden"
-          @click="go(HOME)" />
+        <router-link :to="HOME">
+          <img src="@/assets/logo.svg" alt="ロゴ" class="h-10 object-contain rounded-xl overflow-hidden"
+            @click="scrollToTop()" />
+        </router-link>
       </div>
       <div class="flex-grow text-left text-sub px-4 text-xl font-header font-bold">
         café Berry
@@ -27,8 +29,10 @@
         ">
         <div class="flex items-center py-2 px-4 w-full bg-header">
           <div class="flex items-center flex-grow-0 text-left">
-            <img src="@/assets/logo.svg" alt="ロゴ" class="h-10 object-contain rounded-xl overflow-hidden"
-              @click="() => { if (menu) go(HOME) }" />
+            <router-link :to="HOME">
+              <img src="@/assets/logo.svg" alt="ロゴ" class="h-10 object-contain rounded-xl overflow-hidden"
+                @click="scrollToTop()" />
+            </router-link>
           </div>
           <div class="
               flex-grow
@@ -39,7 +43,7 @@
             ">
             café Berry
           </div>
-          <button class="flex items-center flex-grow-0 px-3 lg:opacity-0" :disabled="!menu" @click="toggleMenu">
+          <button type="button" class="flex items-center flex-grow-0 px-3 lg:opacity-0" :disabled="!menu" @click="toggleMenu">
             <transition enter-active-class="transition-all duration-500" enter-from-class="opacity-0"
               enter-to-class="opacity-1" mode="out-in">
               <font-awesome-icon v-if="menu" icon="xmark" class="w-5 text-sub inline lg:hidden" />
@@ -50,15 +54,19 @@
         <div :class="`flex-1 lg:w-full p-5 text-sub font-bold left bg-header inline-flex flex-col items-stretch transition-all duration-500 transform ${menu ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'
         }`">
           <p class="font-strong text-xl mb-4 mt-3">ベリぃのこと</p>
-          <p class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="go(HOME)">
+          <router-link :to="HOME" class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="scrollToTop">
             ホーム
-          </p>
-          <p class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="go(BENTO)">
+          </router-link>
+          <router-link :to="BENTO" class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="scrollToTop">
             お弁当
-          </p>
-          <p class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="go(LINK)">
+          </router-link>
+          <router-link :to="INFORMATION" class="font-header underline text-xl mb-4 px-5 cursor-pointer"
+            @click="scrollToTop">
+            お知らせ
+          </router-link>
+          <router-link :to="LINK" class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="scrollToTop">
             周辺施設
-          </p>
+          </router-link>
           <p class="font-strong text-xl mb-4 mt-3">ご予約はこちら</p>
           <a href="tel:0857860515" class="inline-flex items-center underline mb-4 px-5">
             <font-awesome-icon icon="phone-flip" class="h-5 mr-2" />0857-86-0515
@@ -82,30 +90,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ROUTE } from "@/constants/index";
-import { defineComponent, ref } from "vue";
-import { useRouter } from "vue-router";
+<script lang="ts" setup>
+import { ROUTE } from "@/router";
+import { ref } from "vue";
 
-const { HOME, BENTO, LINK } = ROUTE;
+const { HOME, BENTO, LINK, INFORMATION } = ROUTE;
+const menu = ref(false);
 
-export default defineComponent({
-  setup() {
-    const menu = ref(false);
-    const router = useRouter();
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  menu.value = false;
+}
+const toggleMenu = () => (menu.value = !menu.value)
 
-    return {
-      menu,
-      go: (route: string) => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        router.push(route);
-        menu.value = false;
-      },
-      HOME,
-      BENTO,
-      LINK,
-      toggleMenu: () => (menu.value = !menu.value),
-    };
-  },
-});
 </script>

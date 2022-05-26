@@ -1,283 +1,117 @@
-/* tslint:disable */
-/* eslint-disable */
-//  This file was automatically generated and should not be edited.
+import utils from "@/plugins/utils";
+import {
+  ListCalenderDatesQueryVariables,
+  ListCalenderDatesQuery,
+  UpdateCalenderDateInput,
+  UpdateCalenderDateMutationVariables,
+  CreateCalenderDateInput,
+  CreateCalenderDateMutationVariables,
+  UpdateCalenderDateMutation,
+  CreateCalenderDateMutation,
+  ArticleByPublishedAtQuery,
+  ArticleByPublishedAtQueryVariables,
+  ArticleType,
+  ModelSortDirection,
+  CreateArticleInput,
+  CreateArticleMutationVariables,
+  UpdateArticleInput,
+  UpdateArticleMutationVariables,
+  DeleteArticleMutationVariables,
+} from "./types";
+import { API, graphqlOperation } from "aws-amplify";
+import { listCalenderDates, articleByPublishedAt } from "./queries";
+import {
+  updateCalenderDate,
+  createCalenderDate,
+  createArticle,
+  updateArticle,
+  deleteArticle,
+} from "./mutations";
+import { GraphQLResult } from "@aws-amplify/api-graphql";
+import auth from "@/plugins/auth";
 
-export type CreateArticleInput = {
-  id?: string | null,
-  publishedAt: string,
-  title: string,
-  content: string,
-  thumbnail?: string | null,
-};
-
-export type ModelArticleConditionInput = {
-  publishedAt?: ModelStringInput | null,
-  title?: ModelStringInput | null,
-  content?: ModelStringInput | null,
-  thumbnail?: ModelStringInput | null,
-  and?: Array< ModelArticleConditionInput | null > | null,
-  or?: Array< ModelArticleConditionInput | null > | null,
-  not?: ModelArticleConditionInput | null,
-};
-
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-};
-
-export type Article = {
-  __typename: "Article",
-  id: string,
-  publishedAt: string,
-  title: string,
-  content: string,
-  thumbnail?: string | null,
-  createdAt: string,
-  updatedAt: string,
-  owner?: string | null,
-  editors?: string | null,
-};
-
-export type UpdateArticleInput = {
-  id: string,
-  publishedAt?: string | null,
-  title?: string | null,
-  content?: string | null,
-  thumbnail?: string | null,
-};
-
-export type DeleteArticleInput = {
-  id: string,
-};
-
-export type ModelArticleFilterInput = {
-  id?: ModelIDInput | null,
-  publishedAt?: ModelStringInput | null,
-  title?: ModelStringInput | null,
-  content?: ModelStringInput | null,
-  thumbnail?: ModelStringInput | null,
-  and?: Array< ModelArticleFilterInput | null > | null,
-  or?: Array< ModelArticleFilterInput | null > | null,
-  not?: ModelArticleFilterInput | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export type ModelArticleConnection = {
-  __typename: "ModelArticleConnection",
-  items:  Array<Article | null >,
-  nextToken?: string | null,
-};
-
-export type CreateArticleMutationVariables = {
-  input: CreateArticleInput,
-  condition?: ModelArticleConditionInput | null,
-};
-
-export type CreateArticleMutation = {
-  createArticle?:  {
-    __typename: "Article",
-    id: string,
-    publishedAt: string,
-    title: string,
-    content: string,
-    thumbnail?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    editors?: string | null,
-  } | null,
-};
-
-export type UpdateArticleMutationVariables = {
-  input: UpdateArticleInput,
-  condition?: ModelArticleConditionInput | null,
-};
-
-export type UpdateArticleMutation = {
-  updateArticle?:  {
-    __typename: "Article",
-    id: string,
-    publishedAt: string,
-    title: string,
-    content: string,
-    thumbnail?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    editors?: string | null,
-  } | null,
-};
-
-export type DeleteArticleMutationVariables = {
-  input: DeleteArticleInput,
-  condition?: ModelArticleConditionInput | null,
-};
-
-export type DeleteArticleMutation = {
-  deleteArticle?:  {
-    __typename: "Article",
-    id: string,
-    publishedAt: string,
-    title: string,
-    content: string,
-    thumbnail?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    editors?: string | null,
-  } | null,
-};
-
-export type GetArticleQueryVariables = {
-  id: string,
-};
-
-export type GetArticleQuery = {
-  getArticle?:  {
-    __typename: "Article",
-    id: string,
-    publishedAt: string,
-    title: string,
-    content: string,
-    thumbnail?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    editors?: string | null,
-  } | null,
-};
-
-export type ListArticlesQueryVariables = {
-  filter?: ModelArticleFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListArticlesQuery = {
-  listArticles?:  {
-    __typename: "ModelArticleConnection",
-    items:  Array< {
-      __typename: "Article",
-      id: string,
-      publishedAt: string,
-      title: string,
-      content: string,
-      thumbnail?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-      editors?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type OnCreateArticleSubscriptionVariables = {
-  owner?: string | null,
-  editors?: string | null,
-};
-
-export type OnCreateArticleSubscription = {
-  onCreateArticle?:  {
-    __typename: "Article",
-    id: string,
-    publishedAt: string,
-    title: string,
-    content: string,
-    thumbnail?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    editors?: string | null,
-  } | null,
-};
-
-export type OnUpdateArticleSubscriptionVariables = {
-  owner?: string | null,
-  editors?: string | null,
-};
-
-export type OnUpdateArticleSubscription = {
-  onUpdateArticle?:  {
-    __typename: "Article",
-    id: string,
-    publishedAt: string,
-    title: string,
-    content: string,
-    thumbnail?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    editors?: string | null,
-  } | null,
-};
-
-export type OnDeleteArticleSubscriptionVariables = {
-  owner?: string | null,
-  editors?: string | null,
-};
-
-export type OnDeleteArticleSubscription = {
-  onDeleteArticle?:  {
-    __typename: "Article",
-    id: string,
-    publishedAt: string,
-    title: string,
-    content: string,
-    thumbnail?: string | null,
-    createdAt: string,
-    updatedAt: string,
-    owner?: string | null,
-    editors?: string | null,
-  } | null,
+export default {
+  getCalenderDatum: async (between: [string, string]) => {
+    const variables: ListCalenderDatesQueryVariables = {
+      filter: { date: { between } },
+    };
+    const isAuthenticated = await auth.isAuthenticated();
+    return (await API.graphql({
+      ...graphqlOperation(listCalenderDates, variables),
+      authMode: isAuthenticated ? "AMAZON_COGNITO_USER_POOLS" : "AWS_IAM",
+    })) as GraphQLResult<ListCalenderDatesQuery>;
+  },
+  updateCalenderData: async (input: UpdateCalenderDateInput) => {
+    const variables: UpdateCalenderDateMutationVariables = {
+      input,
+    };
+    return (await API.graphql(
+      graphqlOperation(updateCalenderDate, variables)
+    )) as GraphQLResult<UpdateCalenderDateMutation>;
+  },
+  createCalenderData: async (input: CreateCalenderDateInput) => {
+    const variables: CreateCalenderDateMutationVariables = { input };
+    return (await API.graphql(
+      graphqlOperation(createCalenderDate, variables)
+    )) as GraphQLResult<CreateCalenderDateMutation>;
+  },
+  articleByPublishedAt: async (
+    input: Omit<ArticleByPublishedAtQueryVariables, "type">
+  ) => {
+    const variables: ArticleByPublishedAtQueryVariables = {
+      type: ArticleType.DEFAULT,
+      sortDirection: ModelSortDirection.DESC,
+      ...input,
+    };
+    const isAuthenticated = await auth.isAuthenticated();
+    return (await API.graphql({
+      ...graphqlOperation(articleByPublishedAt, variables),
+      authMode: isAuthenticated ? "AMAZON_COGNITO_USER_POOLS" : "AWS_IAM",
+    })) as GraphQLResult<ArticleByPublishedAtQuery>;
+  },
+  createArticle: async ({
+    title,
+    content,
+    publishDate,
+    thumbnail,
+  }: Pick<CreateArticleInput, "content" | "title" | "thumbnail"> & {
+    publishDate: string;
+  }) => {
+    const variables: CreateArticleMutationVariables = {
+      input: {
+        title,
+        content,
+        thumbnail,
+        type: ArticleType.DEFAULT,
+        publishedAt: utils.getTimeStampFromDate(publishDate),
+        publishedYearMonth: utils.getMonthStringFromDate(publishDate),
+      },
+    };
+    return API.graphql(graphqlOperation(createArticle, variables));
+  },
+  updateArticle: async ({
+    title,
+    content,
+    publishDate,
+    thumbnail,
+    id,
+  }: Pick<UpdateArticleInput, "content" | "title" | "thumbnail" | "id"> & {
+    publishDate: string;
+  }) => {
+    const variables: UpdateArticleMutationVariables = {
+      input: {
+        id,
+        title,
+        content,
+        thumbnail,
+        type: ArticleType.DEFAULT,
+        publishedAt: utils.getTimeStampFromDate(publishDate),
+        publishedYearMonth: utils.getMonthStringFromDate(publishDate),
+      },
+    };
+    return API.graphql(graphqlOperation(updateArticle, variables));
+  },
+  deleteArticle: async (variables: DeleteArticleMutationVariables) => {
+    return API.graphql(graphqlOperation(deleteArticle, variables));
+  },
 };

@@ -1,5 +1,5 @@
 projects:
-  article:
+  aoyacafeberry:
     schemaPath: src/graphql/schema.json
     includes:
       - src/plugins/api/**/*.ts
@@ -8,9 +8,8 @@ projects:
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: src/plugins/api/index.ts
+        generatedFileName: src/api/types.ts
         docsFilePath: src/plugins/api
-        maxDepth: 2
 extensions:
   amplify:
     version: 3

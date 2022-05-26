@@ -1,15 +1,14 @@
 {
-  "resourceName": "resource",
-  "policyUUID": "d1858f14",
-  "bucketName": "aoya-cafe-berry-storage",
+  "resourceName": "resources",
+  "policyUUID": "16987768",
+  "bucketName": "cafe-berry-resources",
   "storageAccess": "authAndGuest",
   "guestAccess": [
     "READ"
   ],
   "authAccess": [
     "CREATE_AND_UPDATE",
-    "READ",
-    "DELETE"
+    "READ"
   ],
   "triggerFunction": "NONE",
   "groupAccess": {}

@@ -1,24 +1,12 @@
 <template>
   <div class="relative w-full h-full overflow-x-hidden">
-    <transition-group
-      enter-active-class="animate"
-      :enter-from-class="direction > 0 ? 'translate-right' : 'translate-left'"
-      enter-to-class="translate-none"
-      leave-active-class="animate"
-      :leave-to-class="direction > 0 ? 'translate-left' : 'translate-right'"
-    >
-      <img
-        v-for="image in images"
-        :key="image.alt"
-        :src="image.src"
-        :alt="image.alt"
-        class="absolute w-full h-full object-cover object-center"
-        :style="{ transitionDuration: duration + 'ms' }"
-      />
+    <transition-group enter-active-class="animate"
+      :enter-from-class="direction > 0 ? 'translate-right' : 'translate-left'" enter-to-class="translate-none"
+      leave-active-class="animate" :leave-to-class="direction > 0 ? 'translate-left' : 'translate-right'">
+      <img v-for="image in images" :key="image.alt" :src="image.src" :alt="image.alt"
+        class="absolute w-full h-full object-cover object-center" :style="{ transitionDuration: duration + 'ms' }" />
     </transition-group>
-    <button
-      v-if="button"
-      class="
+    <button v-if="button" type="button" class="
         absolute
         bg-sub-0.5
         h-full
@@ -28,15 +16,10 @@
         flex
         items-center
         z-10
-      "
-      :disabled="direction != 0"
-      @click="move(-1)"
-    >
+      " :disabled="direction != 0" @click="move(-1)">
       <font-awesome-icon icon="caret-left" class="w-5 text-white" />
     </button>
-    <button
-      v-if="button"
-      class="
+    <button v-if="button" type="button" class="
         absolute
         bg-sub-0.5
         h-full
@@ -46,10 +29,7 @@
         flex
         items-center
         z-10
-      "
-      :disabled="direction != 0"
-      @click="move(1)"
-    >
+      " :disabled="direction != 0" @click="move(1)">
       <font-awesome-icon icon="caret-right" class="w-5 text-white" />
     </button>
   </div>
@@ -112,12 +92,15 @@ export default defineComponent({
   animation-timing-function: ease-in-out;
   transition-property: all;
 }
+
 .translate-left {
   transform: translateX(-100%);
 }
+
 .translate-right {
   transform: translateX(100%);
 }
+
 .translate-none {
   transform: translateX(0);
 }

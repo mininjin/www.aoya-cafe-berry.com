@@ -2,48 +2,99 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateArticle = /* GraphQL */ `
-  subscription OnCreateArticle($owner: String, $editors: String) {
-    onCreateArticle(owner: $owner, editors: $editors) {
+export const onCreateCalenderDate = /* GraphQL */ `
+  subscription OnCreateCalenderDate {
+    onCreateCalenderDate {
       id
-      publishedAt
-      title
-      content
-      thumbnail
+      date
+      description
+      isRest
+      isHoliday
       createdAt
       updatedAt
-      owner
-      editors
+    }
+  }
+`;
+export const onUpdateCalenderDate = /* GraphQL */ `
+  subscription OnUpdateCalenderDate {
+    onUpdateCalenderDate {
+      id
+      date
+      description
+      isRest
+      isHoliday
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteCalenderDate = /* GraphQL */ `
+  subscription OnDeleteCalenderDate {
+    onDeleteCalenderDate {
+      id
+      date
+      description
+      isRest
+      isHoliday
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateArticle = /* GraphQL */ `
+  subscription OnCreateArticle {
+    onCreateArticle {
+      id
+      type
+      publishedYearMonth
+      publishedAt
+      content
+      title
+      thumbnail {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
 export const onUpdateArticle = /* GraphQL */ `
-  subscription OnUpdateArticle($owner: String, $editors: String) {
-    onUpdateArticle(owner: $owner, editors: $editors) {
+  subscription OnUpdateArticle {
+    onUpdateArticle {
       id
+      type
+      publishedYearMonth
       publishedAt
-      title
       content
-      thumbnail
+      title
+      thumbnail {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
-      owner
-      editors
     }
   }
 `;
 export const onDeleteArticle = /* GraphQL */ `
-  subscription OnDeleteArticle($owner: String, $editors: String) {
-    onDeleteArticle(owner: $owner, editors: $editors) {
+  subscription OnDeleteArticle {
+    onDeleteArticle {
       id
+      type
+      publishedYearMonth
       publishedAt
-      title
       content
-      thumbnail
+      title
+      thumbnail {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
-      owner
-      editors
     }
   }
 `;

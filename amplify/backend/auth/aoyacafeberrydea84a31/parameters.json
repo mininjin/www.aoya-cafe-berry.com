@@ -1,0 +1,24 @@
+{
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "aoyacafeberrydea84a31",
+  "serviceType": "imported",
+  "region": "ap-northeast-1",
+  "usernameAttributes": [
+    "email"
+  ],
+  "authProvidersUserPool": [],
+  "requiredAttributes": [
+    "email"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Uppercase",
+    "Requires Numbers"
+  ],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}
