@@ -1,5 +1,5 @@
 <template>
-  <section class="py-5">
+  <section class="py-10">
     <SectionTitle title="カレンダー" />
     <Calender v-slot="{ data }">
       <div v-if="data" :class="`p-2 ${data.data?.isRest ? 'bg-sub' : ''}`">

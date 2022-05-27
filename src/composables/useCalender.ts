@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import type { CalenderDate } from "@/plugins/api/types";
 import utils, { DatePayload } from "@/plugins/utils";
-import { WEEK_LENGTH, DATE_SPLITTER } from "@/constants";
+import { DATE_SPLITTER, FETCH_MONTH_LENGTH } from "@/constants";
 import api from "@/plugins/api";
 
 export type WeekElement = {
@@ -11,6 +11,7 @@ export type WeekElement = {
 
 export type DateElement = {
   date: DatePayload;
+  month: number;
   isToday: boolean;
   dateIndex: number;
   data?: CalenderDate;
@@ -21,23 +22,17 @@ type DateIndexes = { weekIndex: number; dateIndex: number };
 export default () => {
   const today = new Date();
   const todayPayload = utils.getDatePayload(today);
-  const displayStartDate = ref(
-    utils.getDatePayload(
-      new Date(
-        today.getFullYear(),
-        today.getMonth(),
-        today.getDate() - today.getDay()
-      )
-    )
-  );
+  const year = ref(todayPayload[0]);
+  const month = ref(todayPayload[1]);
   const loading = ref(false);
   let between: [DatePayload, DatePayload] | undefined = undefined;
   const getDateBetween = (): [DatePayload, DatePayload] => {
-    const [year, month, date] = displayStartDate.value;
     return [
-      utils.getDatePayload(new Date(year, month - 1, date - WEEK_LENGTH * 7)),
       utils.getDatePayload(
-        new Date(year, month - 1, date + (WEEK_LENGTH + 1) * 7)
+        new Date(year.value, month.value - FETCH_MONTH_LENGTH, 1)
+      ),
+      utils.getDatePayload(
+        new Date(year.value, month.value + FETCH_MONTH_LENGTH + 1, 1)
       ),
     ];
   };
@@ -46,10 +41,11 @@ export default () => {
   const setWeeks = async () => {
     //
     loading.value = true;
+    const thisMonth: DatePayload = [year.value, month.value, 1];
     if (
       between == undefined ||
-      utils.isGraterThan(between[0], displayStartDate.value) ||
-      utils.isGraterThan(displayStartDate.value, between[1])
+      utils.isGraterThan(between[0], thisMonth) ||
+      utils.isGraterThan(thisMonth, between[1])
     ) {
       between = getDateBetween();
       const { data } = await api.getCalenderDatum(
@@ -62,8 +58,9 @@ export default () => {
     }
     //
     const weekElements = [];
-    const date = utils.getDateFromPayload(displayStartDate.value);
-    for (let _ = 0; _ < WEEK_LENGTH; _++) {
+    const date = utils.getDateFromPayload(thisMonth);
+    date.setDate(date.getDate() - date.getDay());
+    for (let _ = 0; _ < 6; _++) {
       const weekElement: WeekElement = {
         start: utils.getDatePayload(date),
         dates: [],
@@ -74,32 +71,46 @@ export default () => {
           data: dateDatum.find((v) => utils.isEqualDate(date, v.date)),
           isToday: utils.isEqualDate(date, todayPayload.join(DATE_SPLITTER)),
           dateIndex,
+          month: date.getMonth() + 1,
         };
         weekElement.dates.push(dateElement);
         date.setDate(date.getDate() + 1);
       }
       weekElements.push(weekElement);
+      if (date.getMonth() + 1 != month.value) break;
     }
     weeks.value = weekElements;
     loading.value = false;
   };
-  const changeStartDate = async (direction: 1 | -1) => {
-    const date = utils.getDateFromPayload(displayStartDate.value);
-    date.setDate(date.getDate() + 7 * direction);
-    displayStartDate.value = utils.getDatePayload(date);
+  const changeMonth = async (direction: 1 | -1) => {
+    const nextMonth = month.value + direction;
+    if (nextMonth <= 0) {
+      year.value--;
+      month.value = 12;
+    } else if (nextMonth > 12) {
+      year.value++;
+      month.value = 1;
+    } else {
+      month.value = nextMonth;
+    }
     await setWeeks();
-    const { weekIndex, dateIndex } = displayDateIndexes.value;
-    setDisplayDateIndexes({ weekIndex: weekIndex - direction, dateIndex });
+    setDisplayDateIndexes(undefined);
   };
-  const displayDateIndexes = ref<DateIndexes>({
-    weekIndex: 0,
+  const displayDateIndexes = ref<DateIndexes | undefined>({
+    weekIndex: Math.floor(
+      (today.getDate() +
+        utils.getDateFromPayload([year.value, month.value, 1]).getDay()) /
+        7
+    ),
     dateIndex: today.getDay(),
   });
-  const setDisplayDateIndexes = (payload: DateIndexes) =>
+  const setDisplayDateIndexes = (payload?: DateIndexes) =>
     (displayDateIndexes.value = payload);
   const displayDate = computed<DateElement | undefined>(() => {
-    const { weekIndex, dateIndex } = displayDateIndexes.value;
-    return weeks.value[weekIndex]?.dates[dateIndex];
+    if (displayDateIndexes.value) {
+      const { weekIndex, dateIndex } = displayDateIndexes.value;
+      return weeks.value[weekIndex]?.dates[dateIndex];
+    } else return undefined;
   });
   const updateDateData = async (data: CalenderDate) => {
     const index = dateDatum.findIndex((v) => v.id == data.id);
@@ -112,10 +123,11 @@ export default () => {
   };
 
   return {
+    year,
+    month,
     weeks,
     setWeeks,
-    displayStartDate,
-    changeStartDate,
+    changeMonth,
     displayDate,
     displayDateIndexes,
     setDisplayDateIndexes,

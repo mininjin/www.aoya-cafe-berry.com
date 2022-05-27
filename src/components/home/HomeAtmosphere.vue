@@ -23,6 +23,10 @@
         </p>
       </div>
     </div>
+    <div class="my-16 relative p-2">
+      <iframe title="3d-image" width='853' height='480' src='https://my.matterport.com/show/?m=TkZg8FDDMJX' frameborder='0'
+        allowfullscreen allow='xr-spatial-tracking' class="mx-auto w-full"></iframe>
+    </div>
     <div class="my-16 relative pb-16">
       <div class="w-3/4 md:w-1/2 aspect-[4/3]">
         <SlideImages :list="INITIAL_IMAGES" :duration="ANIMATION_DURATION" :interval="INTERVAL_TIME" />

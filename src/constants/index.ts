@@ -32,3 +32,4 @@ export const DATE_FORMAT = new RegExp(
 export const MONTHS = Array(12)
   .fill(null)
   .map((_, i) => i + 1);
+export const FETCH_MONTH_LENGTH = 6;
