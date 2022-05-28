@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@aws-amplify/ui-vue": "^2.4.4",
+    "@tailwindcss/line-clamp": "^0.4.0",
     "aws-amplify": "^4.3.22",
     "gsap": "^3.10.4",
     "vue": "^3.2.25"

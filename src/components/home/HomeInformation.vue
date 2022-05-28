@@ -10,11 +10,11 @@
           <h2 class="mb-2 text-xl font-bold">{{ article.title }}</h2>
           <div class="flex items-stretch space-x-4 text-left w-full h-32">
             <img :src="article.thumbnail.image"
-              class="h-full aspect-square object-cover object-left-top flex-grow-0 flex-shrink-0">
-            <div class="text-left flex-shrink flex flex-col h-full overflow-hidden">
+              class="h-full aspect-square object-cover object-center flex-grow-0 flex-shrink-0">
+            <div class="text-left flex-shrink flex flex-col justify-center h-full overflow-hidden">
               <p class="mb-2">{{ utils.getDateFromDateTime(article.publishedAt) }}</p>
               <p class="text-lg w-full overflow-hidden flex-1">
-                <span class="inline-block text-ellipsis break-all break-words h-full w-full">
+                <span class="inline-block text-ellipsis break-all break-words h-21 w-full overflow-hidden line-clamp-3">
                   {{ article.content }}
                 </span>
               </p>

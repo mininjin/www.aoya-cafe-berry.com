@@ -25,6 +25,7 @@ module.exports = {
         "1/8": "12.5%",
         "3/7": "42.857143%",
         "1/7": "14.285714%",
+        21: "5.25rem",
       },
       zIndex: {
         5: 5,
@@ -66,5 +67,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
