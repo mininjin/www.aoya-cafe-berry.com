@@ -99,7 +99,8 @@ export default () => {
   const displayDateIndexes = ref<DateIndexes | undefined>({
     weekIndex: Math.floor(
       (today.getDate() +
-        utils.getDateFromPayload([year.value, month.value, 1]).getDay()) /
+        utils.getDateFromPayload([year.value, month.value, 1]).getDay() -
+        1) /
         7
     ),
     dateIndex: today.getDay(),
