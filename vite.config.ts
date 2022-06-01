@@ -38,7 +38,6 @@ export default defineConfig(({ mode }) => {
           "msapplication-icon-144x144.png",
           "mstile-150x150.png",
           "apple-touch-icon-152x152.png",
-          "apple-touch-icon.png",
         ],
         manifest: {
           name: env.VITE_APP_TITLE,
