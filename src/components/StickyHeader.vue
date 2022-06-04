@@ -43,7 +43,8 @@
             ">
             café Berry
           </div>
-          <button type="button" class="flex items-center flex-grow-0 px-3 lg:opacity-0" :disabled="!menu" @click="toggleMenu">
+          <button type="button" class="flex items-center flex-grow-0 px-3 lg:opacity-0" :disabled="!menu"
+            @click="toggleMenu">
             <transition enter-active-class="transition-all duration-500" enter-from-class="opacity-0"
               enter-to-class="opacity-1" mode="out-in">
               <font-awesome-icon v-if="menu" icon="xmark" class="w-5 text-sub inline lg:hidden" />
@@ -56,6 +57,10 @@
           <p class="font-strong text-xl mb-4 mt-3">ベリぃのこと</p>
           <router-link :to="HOME" class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="scrollToTop">
             ホーム
+          </router-link>
+          <router-link :to="CONCEPT" class="font-header underline text-xl mb-4 px-5 cursor-pointer"
+            @click="scrollToTop">
+            コンセプト
           </router-link>
           <router-link :to="BENTO" class="font-header underline text-xl mb-4 px-5 cursor-pointer" @click="scrollToTop">
             お弁当
@@ -94,7 +99,7 @@
 import { ROUTE } from "@/router";
 import { ref } from "vue";
 
-const { HOME, BENTO, LINK, INFORMATION } = ROUTE;
+const { HOME, BENTO, LINK, INFORMATION, CONCEPT } = ROUTE;
 const menu = ref(false);
 
 const scrollToTop = () => {

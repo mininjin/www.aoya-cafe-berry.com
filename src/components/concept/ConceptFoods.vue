@@ -2,7 +2,7 @@
   <section class="bg-sub-0.5 py-10">
     <SectionTitle title="お食事" :reversed="true" />
     <div class="my-16">
-      <HomeVegetables />
+      <ConceptVegetables />
       <div class="flex items-stretch mt-10">
         <div class="w-1/12"></div>
         <div class="w-4/6 py-3 text-white">
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="my-16">
-      <HomeLunch />
+      <ConceptLunch />
       <div class="flex items-stretch">
         <div class="w-1/6"></div>
         <div class="w-4/6 py-3 text-white">
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="my-16">
-      <HomeSweets />
+      <ConceptSweets />
       <div class="flex items-stretch">
         <div class="w-1/8"></div>
         <div class="w-4/6 py-3 text-white">
@@ -43,8 +43,8 @@
 </template>
 
 <script lang="ts" setup>
-import HomeVegetables from "./HomeVegetables.vue";
-import HomeLunch from "./HomeLunch.vue";
-import HomeSweets from "./HomeSweets.vue";
+import ConceptVegetables from "./ConceptVegetables.vue";
+import ConceptLunch from "./ConceptLunch.vue";
+import ConceptSweets from "./ConceptSweets.vue";
 import SectionTitle from "../UI/SectionTitle.vue";
 </script>

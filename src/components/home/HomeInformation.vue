@@ -10,7 +10,7 @@
           <h2 class="mb-2 text-xl font-bold">{{ article.title }}</h2>
           <div class="flex items-stretch space-x-4 text-left w-full h-32">
             <img :src="article.thumbnail.image"
-              class="h-full aspect-square object-cover object-center flex-grow-0 flex-shrink-0">
+              class="h-full aspect-square object-cover object-center flex-grow-0 flex-shrink-0" :alt="article.title">
             <div class="text-left flex-shrink flex flex-col justify-center h-full overflow-hidden">
               <p class="mb-2">{{ utils.getDateFromDateTime(article.publishedAt) }}</p>
               <p class="text-lg w-full overflow-hidden flex-1">

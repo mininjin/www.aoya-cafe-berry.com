@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 
 export const ROUTE = {
   HOME: "/",
+  CONCEPT: "/concept",
   BENTO: "/bento",
   LINK: "/link",
   INFORMATION: "/information",
@@ -25,6 +26,12 @@ const routes: Array<RouteRecordRaw> = [
     path: ROUTE.HOME,
     name: "home",
     component: HomeView,
+  },
+  {
+    path: ROUTE.CONCEPT,
+    name: "concept",
+    component: () =>
+      import(/* webpackChunkName: "concept" */ "../views/ConceptView.vue"),
   },
   {
     path: ROUTE.BENTO,
