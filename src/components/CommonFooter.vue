@@ -74,8 +74,6 @@ const scrollToTop = () => window.scrollTo({ top: 0 });
         </div>
       </div>
     </div>
-    <p class="text-sm text-right p-2" @click="">
-      <router-link :to="ROUTE.EDIT" @click="scrollToTop">{{ COPYRIGHT }}</router-link>
-    </p>
+    <p class="text-sm text-right p-2"> {{ COPYRIGHT }} </p>
   </footer>
 </template>

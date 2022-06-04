@@ -16,12 +16,6 @@ export const WEEKEND = [0, 6];
 export const DAY_LABELS = ["日", "月", "火", "水", "木", "金", "土"];
 export const NORMAL_DAY_DESCRIPTION = "通常営業です！";
 export const REST_DAY_DESCRIPTION = "お休み";
-export const ADMIN_GROUPS = import.meta.env.VITE_ADMIN_GROUPS.split(",");
-export const PASSWORD_POLICY =
-  /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[!-~]{8,100}$/;
-export const EMAIL_EXP =
-  /^[a-zA-Z0-9_.+-]+@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
-export const NEW_PASSWORD_REQUIRED = "NEW_PASSWORD_REQUIRED";
 export const ARTICLE_LIMIT = 2;
 export const ARTICLE_LIMIT_MONTHLY = 10;
 export const TITLE_MAX_LENGTH = 30;
