@@ -8,8 +8,8 @@
   ],
   "authAccess": [
     "CREATE_AND_UPDATE",
-    "READ"
+    "READ",
+    "DELETE"
   ],
-  "triggerFunction": "NONE",
   "groupAccess": {}
 }
