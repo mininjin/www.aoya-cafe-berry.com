@@ -5,7 +5,10 @@ export const TOP_IMAGE_PATH = IMAGE_DIR + "top/";
 export const VEGETABLES_IMAGE_PATH = IMAGE_DIR + "vegetables/";
 export const BENTO_IMAGE_PATH = IMAGE_DIR + "bentos/";
 export const LINK_IMAGE_PATH = IMAGE_DIR + "links/";
-export const LOADING_ANIMATION_DOM = "loading-animation";
+export const LOADING_ANIMATION_DOM = import.meta.env.VITE_LOADING_ANIMATION_ID;
+export const LOADING_PROGRESS_BAR_ID = import.meta.env
+  .VITE_LOADING_PROGRESS_BAR_ID;
+export const FONT_FAMILIES = ["Zen Maru Gothic", "Potta One", "Klee One:600"];
 export const LOGIN_URL = import.meta.env.VITE_AUTH_URL;
 export const COPYRIGHT = import.meta.env.VITE_COPYRIGHT;
 export const DATE_SPLITTER = "-";

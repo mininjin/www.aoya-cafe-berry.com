@@ -42,10 +42,10 @@
   <body>
     <!-- Loading -->
     <div
-      id="loading-animation"
-      class="fixed w-full h-full z-100 transition-all duration-1000"
+      id="<%- loadingAnimationId %>"
+      class="fixed w-full h-full z-100 flex items-center justify-center bg-sub transition-all duration-1000"
     >
-      <div class="flex flex-col items-center justify-center h-full bg-sub">
+      <div class="inline-flex flex-col items-center justify-center">
         <img
           src="./img/logo_reverse.svg"
           alt="ロゴ"
@@ -63,6 +63,12 @@
           <span class="loading-loading">n</span>
           <span class="loading-loading">g</span>
           ...
+        </div>
+        <div class="w-full relative h-4 bg-white mt-4 rounded overflow-hidden">
+          <div
+            id="<%- loadingProgressBarId %>"
+            class="absolute w-0 bg-tertiary h-full transition-all duration-500"
+          ></div>
         </div>
       </div>
     </div>
