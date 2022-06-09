@@ -74,9 +74,44 @@ export type CalenderDate = {
   description: string,
   isRest: boolean,
   isHoliday: boolean,
+  reservations?: ModelReservationConnection | null,
   createdAt: string,
   updatedAt: string,
 };
+
+export type ModelReservationConnection = {
+  __typename: "ModelReservationConnection",
+  items:  Array<Reservation | null >,
+  nextToken?: string | null,
+};
+
+export type Reservation = {
+  __typename: "Reservation",
+  id: string,
+  date: string,
+  dateTime: string,
+  number: number,
+  type: ReservationType,
+  status: ReservationStatus,
+  name?: string | null,
+  note?: string | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export enum ReservationType {
+  LUNCH = "LUNCH",
+  TEA = "TEA",
+  BENTO = "BENTO",
+}
+
+
+export enum ReservationStatus {
+  REQUESTED = "REQUESTED",
+  APPROVED = "APPROVED",
+  ENDED = "ENDED",
+}
+
 
 export type UpdateCalenderDateInput = {
   id: string,
@@ -87,6 +122,67 @@ export type UpdateCalenderDateInput = {
 };
 
 export type DeleteCalenderDateInput = {
+  id: string,
+};
+
+export type CreateReservationInput = {
+  id?: string | null,
+  date: string,
+  dateTime: string,
+  number: number,
+  type: ReservationType,
+  status: ReservationStatus,
+  name?: string | null,
+  note?: string | null,
+};
+
+export type ModelReservationConditionInput = {
+  date?: ModelStringInput | null,
+  dateTime?: ModelStringInput | null,
+  number?: ModelIntInput | null,
+  type?: ModelReservationTypeInput | null,
+  status?: ModelReservationStatusInput | null,
+  name?: ModelStringInput | null,
+  note?: ModelStringInput | null,
+  and?: Array< ModelReservationConditionInput | null > | null,
+  or?: Array< ModelReservationConditionInput | null > | null,
+  not?: ModelReservationConditionInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type ModelReservationTypeInput = {
+  eq?: ReservationType | null,
+  ne?: ReservationType | null,
+};
+
+export type ModelReservationStatusInput = {
+  eq?: ReservationStatus | null,
+  ne?: ReservationStatus | null,
+};
+
+export type UpdateReservationInput = {
+  id: string,
+  date?: string | null,
+  dateTime?: string | null,
+  number?: number | null,
+  type?: ReservationType | null,
+  status?: ReservationStatus | null,
+  name?: string | null,
+  note?: string | null,
+};
+
+export type DeleteReservationInput = {
   id: string,
 };
 
@@ -194,138 +290,35 @@ export type ModelCalenderDateConnection = {
   nextToken?: string | null,
 };
 
-export type SearchableCalenderDateFilterInput = {
-  id?: SearchableIDFilterInput | null,
-  date?: SearchableStringFilterInput | null,
-  description?: SearchableStringFilterInput | null,
-  isRest?: SearchableBooleanFilterInput | null,
-  isHoliday?: SearchableBooleanFilterInput | null,
-  createdAt?: SearchableStringFilterInput | null,
-  updatedAt?: SearchableStringFilterInput | null,
-  and?: Array< SearchableCalenderDateFilterInput | null > | null,
-  or?: Array< SearchableCalenderDateFilterInput | null > | null,
-  not?: SearchableCalenderDateFilterInput | null,
+export type ModelReservationFilterInput = {
+  id?: ModelIDInput | null,
+  date?: ModelStringInput | null,
+  dateTime?: ModelStringInput | null,
+  number?: ModelIntInput | null,
+  type?: ModelReservationTypeInput | null,
+  status?: ModelReservationStatusInput | null,
+  name?: ModelStringInput | null,
+  note?: ModelStringInput | null,
+  and?: Array< ModelReservationFilterInput | null > | null,
+  or?: Array< ModelReservationFilterInput | null > | null,
+  not?: ModelReservationFilterInput | null,
 };
 
-export type SearchableIDFilterInput = {
-  ne?: string | null,
-  gt?: string | null,
-  lt?: string | null,
-  gte?: string | null,
-  lte?: string | null,
+export type ModelStringKeyConditionInput = {
   eq?: string | null,
-  match?: string | null,
-  matchPhrase?: string | null,
-  matchPhrasePrefix?: string | null,
-  multiMatch?: string | null,
-  exists?: boolean | null,
-  wildcard?: string | null,
-  regexp?: string | null,
-  range?: Array< string | null > | null,
-};
-
-export type SearchableStringFilterInput = {
-  ne?: string | null,
-  gt?: string | null,
+  le?: string | null,
   lt?: string | null,
-  gte?: string | null,
-  lte?: string | null,
-  eq?: string | null,
-  match?: string | null,
-  matchPhrase?: string | null,
-  matchPhrasePrefix?: string | null,
-  multiMatch?: string | null,
-  exists?: boolean | null,
-  wildcard?: string | null,
-  regexp?: string | null,
-  range?: Array< string | null > | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
 };
 
-export type SearchableBooleanFilterInput = {
-  eq?: boolean | null,
-  ne?: boolean | null,
-};
-
-export type SearchableCalenderDateSortInput = {
-  field?: SearchableCalenderDateSortableFields | null,
-  direction?: SearchableSortDirection | null,
-};
-
-export enum SearchableCalenderDateSortableFields {
-  id = "id",
-  date = "date",
-  description = "description",
-  isRest = "isRest",
-  isHoliday = "isHoliday",
-  createdAt = "createdAt",
-  updatedAt = "updatedAt",
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
 }
 
-
-export enum SearchableSortDirection {
-  asc = "asc",
-  desc = "desc",
-}
-
-
-export type SearchableCalenderDateAggregationInput = {
-  name: string,
-  type: SearchableAggregateType,
-  field: SearchableCalenderDateAggregateField,
-};
-
-export enum SearchableAggregateType {
-  terms = "terms",
-  avg = "avg",
-  min = "min",
-  max = "max",
-  sum = "sum",
-}
-
-
-export enum SearchableCalenderDateAggregateField {
-  id = "id",
-  date = "date",
-  description = "description",
-  isRest = "isRest",
-  isHoliday = "isHoliday",
-  createdAt = "createdAt",
-  updatedAt = "updatedAt",
-}
-
-
-export type SearchableCalenderDateConnection = {
-  __typename: "SearchableCalenderDateConnection",
-  items:  Array<CalenderDate | null >,
-  nextToken?: string | null,
-  total?: number | null,
-  aggregateItems:  Array<SearchableAggregateResult | null >,
-};
-
-export type SearchableAggregateResult = {
-  __typename: "SearchableAggregateResult",
-  name: string,
-  result?: SearchableAggregateGenericResult | null,
-};
-
-export type SearchableAggregateGenericResult = SearchableAggregateScalarResult | SearchableAggregateBucketResult
-
-
-export type SearchableAggregateScalarResult = {
-  __typename: "SearchableAggregateScalarResult",
-  value: number,
-};
-
-export type SearchableAggregateBucketResult = {
-  __typename: "SearchableAggregateBucketResult",
-  buckets?:  Array<SearchableAggregateBucketResultItem | null > | null,
-};
-
-export type SearchableAggregateBucketResultItem = {
-  __typename: "SearchableAggregateBucketResultItem",
-  key: string,
-  doc_count: number,
-};
 
 export type ModelArticleFilterInput = {
   id?: ModelIDInput | null,
@@ -345,78 +338,6 @@ export type ModelArticleConnection = {
   nextToken?: string | null,
 };
 
-export type ModelStringKeyConditionInput = {
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-};
-
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
-
-export type SearchableArticleFilterInput = {
-  id?: SearchableIDFilterInput | null,
-  publishedYearMonth?: SearchableStringFilterInput | null,
-  publishedAt?: SearchableStringFilterInput | null,
-  content?: SearchableStringFilterInput | null,
-  title?: SearchableStringFilterInput | null,
-  createdAt?: SearchableStringFilterInput | null,
-  updatedAt?: SearchableStringFilterInput | null,
-  type?: SearchableStringFilterInput | null,
-  and?: Array< SearchableArticleFilterInput | null > | null,
-  or?: Array< SearchableArticleFilterInput | null > | null,
-  not?: SearchableArticleFilterInput | null,
-};
-
-export type SearchableArticleSortInput = {
-  field?: SearchableArticleSortableFields | null,
-  direction?: SearchableSortDirection | null,
-};
-
-export enum SearchableArticleSortableFields {
-  id = "id",
-  publishedYearMonth = "publishedYearMonth",
-  publishedAt = "publishedAt",
-  content = "content",
-  title = "title",
-  createdAt = "createdAt",
-  updatedAt = "updatedAt",
-}
-
-
-export type SearchableArticleAggregationInput = {
-  name: string,
-  type: SearchableAggregateType,
-  field: SearchableArticleAggregateField,
-};
-
-export enum SearchableArticleAggregateField {
-  id = "id",
-  type = "type",
-  publishedYearMonth = "publishedYearMonth",
-  publishedAt = "publishedAt",
-  content = "content",
-  title = "title",
-  createdAt = "createdAt",
-  updatedAt = "updatedAt",
-}
-
-
-export type SearchableArticleConnection = {
-  __typename: "SearchableArticleConnection",
-  items:  Array<Article | null >,
-  nextToken?: string | null,
-  total?: number | null,
-  aggregateItems:  Array<SearchableAggregateResult | null >,
-};
-
 export type CreateCalenderDateMutationVariables = {
   input: CreateCalenderDateInput,
   condition?: ModelCalenderDateConditionInput | null,
@@ -430,6 +351,23 @@ export type CreateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    reservations?:  {
+      __typename: "ModelReservationConnection",
+      items:  Array< {
+        __typename: "Reservation",
+        id: string,
+        date: string,
+        dateTime: string,
+        number: number,
+        type: ReservationType,
+        status: ReservationStatus,
+        name?: string | null,
+        note?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -448,6 +386,23 @@ export type UpdateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    reservations?:  {
+      __typename: "ModelReservationConnection",
+      items:  Array< {
+        __typename: "Reservation",
+        id: string,
+        date: string,
+        dateTime: string,
+        number: number,
+        type: ReservationType,
+        status: ReservationStatus,
+        name?: string | null,
+        note?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -466,6 +421,86 @@ export type DeleteCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    reservations?:  {
+      __typename: "ModelReservationConnection",
+      items:  Array< {
+        __typename: "Reservation",
+        id: string,
+        date: string,
+        dateTime: string,
+        number: number,
+        type: ReservationType,
+        status: ReservationStatus,
+        name?: string | null,
+        note?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateReservationMutationVariables = {
+  input: CreateReservationInput,
+  condition?: ModelReservationConditionInput | null,
+};
+
+export type CreateReservationMutation = {
+  createReservation?:  {
+    __typename: "Reservation",
+    id: string,
+    date: string,
+    dateTime: string,
+    number: number,
+    type: ReservationType,
+    status: ReservationStatus,
+    name?: string | null,
+    note?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateReservationMutationVariables = {
+  input: UpdateReservationInput,
+  condition?: ModelReservationConditionInput | null,
+};
+
+export type UpdateReservationMutation = {
+  updateReservation?:  {
+    __typename: "Reservation",
+    id: string,
+    date: string,
+    dateTime: string,
+    number: number,
+    type: ReservationType,
+    status: ReservationStatus,
+    name?: string | null,
+    note?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteReservationMutationVariables = {
+  input: DeleteReservationInput,
+  condition?: ModelReservationConditionInput | null,
+};
+
+export type DeleteReservationMutation = {
+  deleteReservation?:  {
+    __typename: "Reservation",
+    id: string,
+    date: string,
+    dateTime: string,
+    number: number,
+    type: ReservationType,
+    status: ReservationStatus,
+    name?: string | null,
+    note?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -558,6 +593,23 @@ export type GetCalenderDateQuery = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    reservations?:  {
+      __typename: "ModelReservationConnection",
+      items:  Array< {
+        __typename: "Reservation",
+        id: string,
+        date: string,
+        dateTime: string,
+        number: number,
+        type: ReservationType,
+        status: ReservationStatus,
+        name?: string | null,
+        note?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -579,6 +631,23 @@ export type ListCalenderDatesQuery = {
       description: string,
       isRest: boolean,
       isHoliday: boolean,
+      reservations?:  {
+        __typename: "ModelReservationConnection",
+        items:  Array< {
+          __typename: "Reservation",
+          id: string,
+          date: string,
+          dateTime: string,
+          number: number,
+          type: ReservationType,
+          status: ReservationStatus,
+          name?: string | null,
+          note?: string | null,
+          createdAt: string,
+          updatedAt: string,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -586,46 +655,78 @@ export type ListCalenderDatesQuery = {
   } | null,
 };
 
-export type SearchCalenderDatesQueryVariables = {
-  filter?: SearchableCalenderDateFilterInput | null,
-  sort?: Array< SearchableCalenderDateSortInput | null > | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  from?: number | null,
-  aggregates?: Array< SearchableCalenderDateAggregationInput | null > | null,
+export type GetReservationQueryVariables = {
+  id: string,
 };
 
-export type SearchCalenderDatesQuery = {
-  searchCalenderDates?:  {
-    __typename: "SearchableCalenderDateConnection",
+export type GetReservationQuery = {
+  getReservation?:  {
+    __typename: "Reservation",
+    id: string,
+    date: string,
+    dateTime: string,
+    number: number,
+    type: ReservationType,
+    status: ReservationStatus,
+    name?: string | null,
+    note?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListReservationsQueryVariables = {
+  filter?: ModelReservationFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListReservationsQuery = {
+  listReservations?:  {
+    __typename: "ModelReservationConnection",
     items:  Array< {
-      __typename: "CalenderDate",
+      __typename: "Reservation",
       id: string,
       date: string,
-      description: string,
-      isRest: boolean,
-      isHoliday: boolean,
+      dateTime: string,
+      number: number,
+      type: ReservationType,
+      status: ReservationStatus,
+      name?: string | null,
+      note?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
     nextToken?: string | null,
-    total?: number | null,
-    aggregateItems:  Array< {
-      __typename: "SearchableAggregateResult",
-      name: string,
-      result: ( {
-          __typename: "SearchableAggregateScalarResult",
-          value: number,
-        } | {
-          __typename: "SearchableAggregateBucketResult",
-          buckets?:  Array< {
-            __typename: string,
-            key: string,
-            doc_count: number,
-          } | null > | null,
-        }
-      ) | null,
+  } | null,
+};
+
+export type ReservationByDateTimeQueryVariables = {
+  status: ReservationStatus,
+  dateTime?: ModelStringKeyConditionInput | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelReservationFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ReservationByDateTimeQuery = {
+  ReservationByDateTime?:  {
+    __typename: "ModelReservationConnection",
+    items:  Array< {
+      __typename: "Reservation",
+      id: string,
+      date: string,
+      dateTime: string,
+      number: number,
+      type: ReservationType,
+      status: ReservationStatus,
+      name?: string | null,
+      note?: string | null,
+      createdAt: string,
+      updatedAt: string,
     } | null >,
+    nextToken?: string | null,
   } | null,
 };
 
@@ -716,56 +817,6 @@ export type ArticleByPublishedAtQuery = {
   } | null,
 };
 
-export type SearchArticlesQueryVariables = {
-  filter?: SearchableArticleFilterInput | null,
-  sort?: Array< SearchableArticleSortInput | null > | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  from?: number | null,
-  aggregates?: Array< SearchableArticleAggregationInput | null > | null,
-};
-
-export type SearchArticlesQuery = {
-  searchArticles?:  {
-    __typename: "SearchableArticleConnection",
-    items:  Array< {
-      __typename: "Article",
-      id: string,
-      type: ArticleType,
-      publishedYearMonth: string,
-      publishedAt: string,
-      content: string,
-      title: string,
-      thumbnail:  {
-        __typename: "S3Object",
-        bucket: string,
-        region: string,
-        key: string,
-      },
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-    total?: number | null,
-    aggregateItems:  Array< {
-      __typename: "SearchableAggregateResult",
-      name: string,
-      result: ( {
-          __typename: "SearchableAggregateScalarResult",
-          value: number,
-        } | {
-          __typename: "SearchableAggregateBucketResult",
-          buckets?:  Array< {
-            __typename: string,
-            key: string,
-            doc_count: number,
-          } | null > | null,
-        }
-      ) | null,
-    } | null >,
-  } | null,
-};
-
 export type OnCreateCalenderDateSubscription = {
   onCreateCalenderDate?:  {
     __typename: "CalenderDate",
@@ -774,6 +825,23 @@ export type OnCreateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    reservations?:  {
+      __typename: "ModelReservationConnection",
+      items:  Array< {
+        __typename: "Reservation",
+        id: string,
+        date: string,
+        dateTime: string,
+        number: number,
+        type: ReservationType,
+        status: ReservationStatus,
+        name?: string | null,
+        note?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -787,6 +855,23 @@ export type OnUpdateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    reservations?:  {
+      __typename: "ModelReservationConnection",
+      items:  Array< {
+        __typename: "Reservation",
+        id: string,
+        date: string,
+        dateTime: string,
+        number: number,
+        type: ReservationType,
+        status: ReservationStatus,
+        name?: string | null,
+        note?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -800,6 +885,71 @@ export type OnDeleteCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    reservations?:  {
+      __typename: "ModelReservationConnection",
+      items:  Array< {
+        __typename: "Reservation",
+        id: string,
+        date: string,
+        dateTime: string,
+        number: number,
+        type: ReservationType,
+        status: ReservationStatus,
+        name?: string | null,
+        note?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateReservationSubscription = {
+  onCreateReservation?:  {
+    __typename: "Reservation",
+    id: string,
+    date: string,
+    dateTime: string,
+    number: number,
+    type: ReservationType,
+    status: ReservationStatus,
+    name?: string | null,
+    note?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateReservationSubscription = {
+  onUpdateReservation?:  {
+    __typename: "Reservation",
+    id: string,
+    date: string,
+    dateTime: string,
+    number: number,
+    type: ReservationType,
+    status: ReservationStatus,
+    name?: string | null,
+    note?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteReservationSubscription = {
+  onDeleteReservation?:  {
+    __typename: "Reservation",
+    id: string,
+    date: string,
+    dateTime: string,
+    number: number,
+    type: ReservationType,
+    status: ReservationStatus,
+    name?: string | null,
+    note?: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,

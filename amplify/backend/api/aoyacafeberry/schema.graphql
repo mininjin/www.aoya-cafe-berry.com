@@ -13,6 +13,44 @@ type CalenderDate
   description: String!
   isRest: Boolean!
   isHoliday: Boolean!
+  reservations: [Reservation] @hasMany(indexName: "byDate", fields: ["date"])
+}
+
+type Reservation
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read], provider: iam }
+      { allow: groups, groups: ["Admin", "cafe-berry"] }
+    ]
+  ) {
+  id: ID!
+  date: AWSDate! @index(name: "byDate", sortKeyFields: ["dateTime"])
+  dateTime: AWSDateTime!
+  number: Int!
+  type: ReservationType!
+  status: ReservationStatus!
+    @index(
+      name: "byStatus"
+      queryField: "ReservationByDateTime"
+      sortKeyFields: ["dateTime"]
+    )
+  name: String
+    @auth(rules: [{ allow: groups, groups: ["Admin", "cafe-berry"] }])
+  note: String
+    @auth(rules: [{ allow: groups, groups: ["Admin", "cafe-berry"] }])
+}
+
+enum ReservationType {
+  LUNCH
+  TEA
+  BENTO
+}
+
+enum ReservationStatus {
+  REQUESTED
+  APPROVED
+  ENDED
 }
 
 type Article

@@ -8,8 +8,9 @@ projects:
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: src/api/types.ts
+        generatedFileName: src/plugins/api/types.ts
         docsFilePath: src/plugins/api
+        maxDepth: 6
 extensions:
   amplify:
     version: 3
