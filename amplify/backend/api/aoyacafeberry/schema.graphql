@@ -13,7 +13,6 @@ type CalenderDate
   description: String!
   isRest: Boolean!
   isHoliday: Boolean!
-  reservations: [Reservation] @hasMany(indexName: "byDate", fields: ["date"])
 }
 
 type Reservation

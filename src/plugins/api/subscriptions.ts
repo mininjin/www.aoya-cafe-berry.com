@@ -10,21 +10,6 @@ export const onCreateCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      reservations {
-        items {
-          id
-          date
-          dateTime
-          number
-          type
-          status
-          name
-          note
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -38,21 +23,6 @@ export const onUpdateCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      reservations {
-        items {
-          id
-          date
-          dateTime
-          number
-          type
-          status
-          name
-          note
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -66,21 +36,6 @@ export const onDeleteCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      reservations {
-        items {
-          id
-          date
-          dateTime
-          number
-          type
-          status
-          name
-          note
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }

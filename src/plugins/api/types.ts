@@ -74,44 +74,9 @@ export type CalenderDate = {
   description: string,
   isRest: boolean,
   isHoliday: boolean,
-  reservations?: ModelReservationConnection | null,
   createdAt: string,
   updatedAt: string,
 };
-
-export type ModelReservationConnection = {
-  __typename: "ModelReservationConnection",
-  items:  Array<Reservation | null >,
-  nextToken?: string | null,
-};
-
-export type Reservation = {
-  __typename: "Reservation",
-  id: string,
-  date: string,
-  dateTime: string,
-  number: number,
-  type: ReservationType,
-  status: ReservationStatus,
-  name?: string | null,
-  note?: string | null,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export enum ReservationType {
-  LUNCH = "LUNCH",
-  TEA = "TEA",
-  BENTO = "BENTO",
-}
-
-
-export enum ReservationStatus {
-  REQUESTED = "REQUESTED",
-  APPROVED = "APPROVED",
-  ENDED = "ENDED",
-}
-
 
 export type UpdateCalenderDateInput = {
   id: string,
@@ -135,6 +100,20 @@ export type CreateReservationInput = {
   name?: string | null,
   note?: string | null,
 };
+
+export enum ReservationType {
+  LUNCH = "LUNCH",
+  TEA = "TEA",
+  BENTO = "BENTO",
+}
+
+
+export enum ReservationStatus {
+  REQUESTED = "REQUESTED",
+  APPROVED = "APPROVED",
+  ENDED = "ENDED",
+}
+
 
 export type ModelReservationConditionInput = {
   date?: ModelStringInput | null,
@@ -169,6 +148,20 @@ export type ModelReservationTypeInput = {
 export type ModelReservationStatusInput = {
   eq?: ReservationStatus | null,
   ne?: ReservationStatus | null,
+};
+
+export type Reservation = {
+  __typename: "Reservation",
+  id: string,
+  date: string,
+  dateTime: string,
+  number: number,
+  type: ReservationType,
+  status: ReservationStatus,
+  name?: string | null,
+  note?: string | null,
+  createdAt: string,
+  updatedAt: string,
 };
 
 export type UpdateReservationInput = {
@@ -304,6 +297,12 @@ export type ModelReservationFilterInput = {
   not?: ModelReservationFilterInput | null,
 };
 
+export type ModelReservationConnection = {
+  __typename: "ModelReservationConnection",
+  items:  Array<Reservation | null >,
+  nextToken?: string | null,
+};
+
 export type ModelStringKeyConditionInput = {
   eq?: string | null,
   le?: string | null,
@@ -351,23 +350,6 @@ export type CreateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    reservations?:  {
-      __typename: "ModelReservationConnection",
-      items:  Array< {
-        __typename: "Reservation",
-        id: string,
-        date: string,
-        dateTime: string,
-        number: number,
-        type: ReservationType,
-        status: ReservationStatus,
-        name?: string | null,
-        note?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -386,23 +368,6 @@ export type UpdateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    reservations?:  {
-      __typename: "ModelReservationConnection",
-      items:  Array< {
-        __typename: "Reservation",
-        id: string,
-        date: string,
-        dateTime: string,
-        number: number,
-        type: ReservationType,
-        status: ReservationStatus,
-        name?: string | null,
-        note?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -421,23 +386,6 @@ export type DeleteCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    reservations?:  {
-      __typename: "ModelReservationConnection",
-      items:  Array< {
-        __typename: "Reservation",
-        id: string,
-        date: string,
-        dateTime: string,
-        number: number,
-        type: ReservationType,
-        status: ReservationStatus,
-        name?: string | null,
-        note?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -593,23 +541,6 @@ export type GetCalenderDateQuery = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    reservations?:  {
-      __typename: "ModelReservationConnection",
-      items:  Array< {
-        __typename: "Reservation",
-        id: string,
-        date: string,
-        dateTime: string,
-        number: number,
-        type: ReservationType,
-        status: ReservationStatus,
-        name?: string | null,
-        note?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -631,23 +562,6 @@ export type ListCalenderDatesQuery = {
       description: string,
       isRest: boolean,
       isHoliday: boolean,
-      reservations?:  {
-        __typename: "ModelReservationConnection",
-        items:  Array< {
-          __typename: "Reservation",
-          id: string,
-          date: string,
-          dateTime: string,
-          number: number,
-          type: ReservationType,
-          status: ReservationStatus,
-          name?: string | null,
-          note?: string | null,
-          createdAt: string,
-          updatedAt: string,
-        } | null >,
-        nextToken?: string | null,
-      } | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -825,23 +739,6 @@ export type OnCreateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    reservations?:  {
-      __typename: "ModelReservationConnection",
-      items:  Array< {
-        __typename: "Reservation",
-        id: string,
-        date: string,
-        dateTime: string,
-        number: number,
-        type: ReservationType,
-        status: ReservationStatus,
-        name?: string | null,
-        note?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -855,23 +752,6 @@ export type OnUpdateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    reservations?:  {
-      __typename: "ModelReservationConnection",
-      items:  Array< {
-        __typename: "Reservation",
-        id: string,
-        date: string,
-        dateTime: string,
-        number: number,
-        type: ReservationType,
-        status: ReservationStatus,
-        name?: string | null,
-        note?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -885,23 +765,6 @@ export type OnDeleteCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    reservations?:  {
-      __typename: "ModelReservationConnection",
-      items:  Array< {
-        __typename: "Reservation",
-        id: string,
-        date: string,
-        dateTime: string,
-        number: number,
-        type: ReservationType,
-        status: ReservationStatus,
-        name?: string | null,
-        note?: string | null,
-        createdAt: string,
-        updatedAt: string,
-      } | null >,
-      nextToken?: string | null,
-    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,

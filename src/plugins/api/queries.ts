@@ -10,21 +10,6 @@ export const getCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      reservations {
-        items {
-          id
-          date
-          dateTime
-          number
-          type
-          status
-          name
-          note
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -43,21 +28,6 @@ export const listCalenderDates = /* GraphQL */ `
         description
         isRest
         isHoliday
-        reservations {
-          items {
-            id
-            date
-            dateTime
-            number
-            type
-            status
-            name
-            note
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
         createdAt
         updatedAt
       }
