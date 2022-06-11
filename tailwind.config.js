@@ -16,6 +16,7 @@ module.exports = {
         "header-0.75": "var(--header-color-75)",
         input: "var(--input-color)",
         file: "var(--file-color)",
+        caution: "var(--caution-color)",
       },
       fontFamily: {
         strong: "var(--font-strong)",
