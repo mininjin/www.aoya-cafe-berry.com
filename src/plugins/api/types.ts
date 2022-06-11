@@ -8,13 +8,28 @@ export type CreateCalenderDateInput = {
   description: string,
   isRest: boolean,
   isHoliday: boolean,
+  unusualOpening?: boolean | null,
+  reservation?: ReservationInput | null,
 };
+
+export type ReservationInput = {
+  lunch: ReservationStatus,
+  bento: ReservationStatus,
+};
+
+export enum ReservationStatus {
+  AVAILABLE = "AVAILABLE",
+  BUSY = "BUSY",
+  UNAVAILABLE = "UNAVAILABLE",
+}
+
 
 export type ModelCalenderDateConditionInput = {
   date?: ModelStringInput | null,
   description?: ModelStringInput | null,
   isRest?: ModelBooleanInput | null,
   isHoliday?: ModelBooleanInput | null,
+  unusualOpening?: ModelBooleanInput | null,
   and?: Array< ModelCalenderDateConditionInput | null > | null,
   or?: Array< ModelCalenderDateConditionInput | null > | null,
   not?: ModelCalenderDateConditionInput | null,
@@ -74,8 +89,16 @@ export type CalenderDate = {
   description: string,
   isRest: boolean,
   isHoliday: boolean,
+  unusualOpening?: boolean | null,
+  reservation?: Reservation | null,
   createdAt: string,
   updatedAt: string,
+};
+
+export type Reservation = {
+  __typename: "Reservation",
+  lunch: ReservationStatus,
+  bento: ReservationStatus,
 };
 
 export type UpdateCalenderDateInput = {
@@ -84,98 +107,11 @@ export type UpdateCalenderDateInput = {
   description?: string | null,
   isRest?: boolean | null,
   isHoliday?: boolean | null,
+  unusualOpening?: boolean | null,
+  reservation?: ReservationInput | null,
 };
 
 export type DeleteCalenderDateInput = {
-  id: string,
-};
-
-export type CreateReservationInput = {
-  id?: string | null,
-  date: string,
-  dateTime: string,
-  number: number,
-  type: ReservationType,
-  status: ReservationStatus,
-  name?: string | null,
-  note?: string | null,
-};
-
-export enum ReservationType {
-  LUNCH = "LUNCH",
-  TEA = "TEA",
-  BENTO = "BENTO",
-}
-
-
-export enum ReservationStatus {
-  REQUESTED = "REQUESTED",
-  APPROVED = "APPROVED",
-  ENDED = "ENDED",
-}
-
-
-export type ModelReservationConditionInput = {
-  date?: ModelStringInput | null,
-  dateTime?: ModelStringInput | null,
-  number?: ModelIntInput | null,
-  type?: ModelReservationTypeInput | null,
-  status?: ModelReservationStatusInput | null,
-  name?: ModelStringInput | null,
-  note?: ModelStringInput | null,
-  and?: Array< ModelReservationConditionInput | null > | null,
-  or?: Array< ModelReservationConditionInput | null > | null,
-  not?: ModelReservationConditionInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export type ModelReservationTypeInput = {
-  eq?: ReservationType | null,
-  ne?: ReservationType | null,
-};
-
-export type ModelReservationStatusInput = {
-  eq?: ReservationStatus | null,
-  ne?: ReservationStatus | null,
-};
-
-export type Reservation = {
-  __typename: "Reservation",
-  id: string,
-  date: string,
-  dateTime: string,
-  number: number,
-  type: ReservationType,
-  status: ReservationStatus,
-  name?: string | null,
-  note?: string | null,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type UpdateReservationInput = {
-  id: string,
-  date?: string | null,
-  dateTime?: string | null,
-  number?: number | null,
-  type?: ReservationType | null,
-  status?: ReservationStatus | null,
-  name?: string | null,
-  note?: string | null,
-};
-
-export type DeleteReservationInput = {
   id: string,
 };
 
@@ -256,6 +192,7 @@ export type ModelCalenderDateFilterInput = {
   description?: ModelStringInput | null,
   isRest?: ModelBooleanInput | null,
   isHoliday?: ModelBooleanInput | null,
+  unusualOpening?: ModelBooleanInput | null,
   and?: Array< ModelCalenderDateFilterInput | null > | null,
   or?: Array< ModelCalenderDateFilterInput | null > | null,
   not?: ModelCalenderDateFilterInput | null,
@@ -283,23 +220,21 @@ export type ModelCalenderDateConnection = {
   nextToken?: string | null,
 };
 
-export type ModelReservationFilterInput = {
+export type ModelArticleFilterInput = {
   id?: ModelIDInput | null,
-  date?: ModelStringInput | null,
-  dateTime?: ModelStringInput | null,
-  number?: ModelIntInput | null,
-  type?: ModelReservationTypeInput | null,
-  status?: ModelReservationStatusInput | null,
-  name?: ModelStringInput | null,
-  note?: ModelStringInput | null,
-  and?: Array< ModelReservationFilterInput | null > | null,
-  or?: Array< ModelReservationFilterInput | null > | null,
-  not?: ModelReservationFilterInput | null,
+  type?: ModelArticleTypeInput | null,
+  publishedYearMonth?: ModelStringInput | null,
+  publishedAt?: ModelStringInput | null,
+  content?: ModelStringInput | null,
+  title?: ModelStringInput | null,
+  and?: Array< ModelArticleFilterInput | null > | null,
+  or?: Array< ModelArticleFilterInput | null > | null,
+  not?: ModelArticleFilterInput | null,
 };
 
-export type ModelReservationConnection = {
-  __typename: "ModelReservationConnection",
-  items:  Array<Reservation | null >,
+export type ModelArticleConnection = {
+  __typename: "ModelArticleConnection",
+  items:  Array<Article | null >,
   nextToken?: string | null,
 };
 
@@ -319,24 +254,6 @@ export enum ModelSortDirection {
 }
 
 
-export type ModelArticleFilterInput = {
-  id?: ModelIDInput | null,
-  type?: ModelArticleTypeInput | null,
-  publishedYearMonth?: ModelStringInput | null,
-  publishedAt?: ModelStringInput | null,
-  content?: ModelStringInput | null,
-  title?: ModelStringInput | null,
-  and?: Array< ModelArticleFilterInput | null > | null,
-  or?: Array< ModelArticleFilterInput | null > | null,
-  not?: ModelArticleFilterInput | null,
-};
-
-export type ModelArticleConnection = {
-  __typename: "ModelArticleConnection",
-  items:  Array<Article | null >,
-  nextToken?: string | null,
-};
-
 export type CreateCalenderDateMutationVariables = {
   input: CreateCalenderDateInput,
   condition?: ModelCalenderDateConditionInput | null,
@@ -350,6 +267,12 @@ export type CreateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    unusualOpening?: boolean | null,
+    reservation?:  {
+      __typename: "Reservation",
+      lunch: ReservationStatus,
+      bento: ReservationStatus,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -368,6 +291,12 @@ export type UpdateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    unusualOpening?: boolean | null,
+    reservation?:  {
+      __typename: "Reservation",
+      lunch: ReservationStatus,
+      bento: ReservationStatus,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -386,69 +315,12 @@ export type DeleteCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateReservationMutationVariables = {
-  input: CreateReservationInput,
-  condition?: ModelReservationConditionInput | null,
-};
-
-export type CreateReservationMutation = {
-  createReservation?:  {
-    __typename: "Reservation",
-    id: string,
-    date: string,
-    dateTime: string,
-    number: number,
-    type: ReservationType,
-    status: ReservationStatus,
-    name?: string | null,
-    note?: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateReservationMutationVariables = {
-  input: UpdateReservationInput,
-  condition?: ModelReservationConditionInput | null,
-};
-
-export type UpdateReservationMutation = {
-  updateReservation?:  {
-    __typename: "Reservation",
-    id: string,
-    date: string,
-    dateTime: string,
-    number: number,
-    type: ReservationType,
-    status: ReservationStatus,
-    name?: string | null,
-    note?: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteReservationMutationVariables = {
-  input: DeleteReservationInput,
-  condition?: ModelReservationConditionInput | null,
-};
-
-export type DeleteReservationMutation = {
-  deleteReservation?:  {
-    __typename: "Reservation",
-    id: string,
-    date: string,
-    dateTime: string,
-    number: number,
-    type: ReservationType,
-    status: ReservationStatus,
-    name?: string | null,
-    note?: string | null,
+    unusualOpening?: boolean | null,
+    reservation?:  {
+      __typename: "Reservation",
+      lunch: ReservationStatus,
+      bento: ReservationStatus,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -541,6 +413,12 @@ export type GetCalenderDateQuery = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    unusualOpening?: boolean | null,
+    reservation?:  {
+      __typename: "Reservation",
+      lunch: ReservationStatus,
+      bento: ReservationStatus,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -562,81 +440,12 @@ export type ListCalenderDatesQuery = {
       description: string,
       isRest: boolean,
       isHoliday: boolean,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetReservationQueryVariables = {
-  id: string,
-};
-
-export type GetReservationQuery = {
-  getReservation?:  {
-    __typename: "Reservation",
-    id: string,
-    date: string,
-    dateTime: string,
-    number: number,
-    type: ReservationType,
-    status: ReservationStatus,
-    name?: string | null,
-    note?: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListReservationsQueryVariables = {
-  filter?: ModelReservationFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListReservationsQuery = {
-  listReservations?:  {
-    __typename: "ModelReservationConnection",
-    items:  Array< {
-      __typename: "Reservation",
-      id: string,
-      date: string,
-      dateTime: string,
-      number: number,
-      type: ReservationType,
-      status: ReservationStatus,
-      name?: string | null,
-      note?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ReservationByDateTimeQueryVariables = {
-  status: ReservationStatus,
-  dateTime?: ModelStringKeyConditionInput | null,
-  sortDirection?: ModelSortDirection | null,
-  filter?: ModelReservationFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ReservationByDateTimeQuery = {
-  ReservationByDateTime?:  {
-    __typename: "ModelReservationConnection",
-    items:  Array< {
-      __typename: "Reservation",
-      id: string,
-      date: string,
-      dateTime: string,
-      number: number,
-      type: ReservationType,
-      status: ReservationStatus,
-      name?: string | null,
-      note?: string | null,
+      unusualOpening?: boolean | null,
+      reservation?:  {
+        __typename: "Reservation",
+        lunch: ReservationStatus,
+        bento: ReservationStatus,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -739,6 +548,12 @@ export type OnCreateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    unusualOpening?: boolean | null,
+    reservation?:  {
+      __typename: "Reservation",
+      lunch: ReservationStatus,
+      bento: ReservationStatus,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -752,6 +567,12 @@ export type OnUpdateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
+    unusualOpening?: boolean | null,
+    reservation?:  {
+      __typename: "Reservation",
+      lunch: ReservationStatus,
+      bento: ReservationStatus,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -765,54 +586,12 @@ export type OnDeleteCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateReservationSubscription = {
-  onCreateReservation?:  {
-    __typename: "Reservation",
-    id: string,
-    date: string,
-    dateTime: string,
-    number: number,
-    type: ReservationType,
-    status: ReservationStatus,
-    name?: string | null,
-    note?: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateReservationSubscription = {
-  onUpdateReservation?:  {
-    __typename: "Reservation",
-    id: string,
-    date: string,
-    dateTime: string,
-    number: number,
-    type: ReservationType,
-    status: ReservationStatus,
-    name?: string | null,
-    note?: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteReservationSubscription = {
-  onDeleteReservation?:  {
-    __typename: "Reservation",
-    id: string,
-    date: string,
-    dateTime: string,
-    number: number,
-    type: ReservationType,
-    status: ReservationStatus,
-    name?: string | null,
-    note?: string | null,
+    unusualOpening?: boolean | null,
+    reservation?:  {
+      __typename: "Reservation",
+      lunch: ReservationStatus,
+      bento: ReservationStatus,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,

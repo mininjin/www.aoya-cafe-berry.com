@@ -14,7 +14,7 @@
         <p class="text-xl">
           <span v-if="data.data?.isRest" class="text-white">{{ REST_DAY_DESCRIPTION }}</span>
           <span v-else>
-            {{ data.data?.description ?? NORMAL_DAY_DESCRIPTION }}
+            {{ data.data?.description || NORMAL_DAY_DESCRIPTION }}
           </span>
         </p>
       </div>

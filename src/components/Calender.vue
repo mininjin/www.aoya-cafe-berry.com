@@ -31,12 +31,12 @@
               <span v-else class="opacity-25">{{ date.date[2] }}</span>
             </li>
           </ul>
-          <transition enter-active-class="date-open" leave-active-class="transition-max-height"
-            leave-from-class="max-h-96" leave-to-class="max-h-0">
-            <div v-if="weekIndex == displayDateIndexes?.weekIndex" class="bg-white">
-              <slot :data="displayDate"></slot>
-            </div>
-          </transition>
+          <div class="bg-white">
+            <transition enter-active-class="open" leave-active-class="transition-max-height" leave-from-class="max-h-96"
+              leave-to-class="max-h-0">
+              <slot v-if="weekIndex == displayDateIndexes?.weekIndex" :data="displayDate"></slot>
+            </transition>
+          </div>
         </div>
       </div>
     </div>
@@ -73,24 +73,24 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-@keyframes date-open {
+@keyframes open {
   0% {
     max-height: 0;
-    color: #fff0;
+    opacity: 0;
   }
 
-  90% {
-    color: #fff0;
+  10% {
+    max-height: 9999px;
+    opacity: 0;
   }
 
   100% {
-    color: currentColor;
-    max-height: 1000rem
+    max-height: 9999px;
+    opacity: 1;
   }
 }
 
-.date-open {
-  animation: date-open 100ms ease-in-out;
-  max-height: 1000rem
+.open {
+  animation: open 500ms ease-in-out;
 }
 </style>

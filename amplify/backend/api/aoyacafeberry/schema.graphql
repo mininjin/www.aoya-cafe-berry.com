@@ -13,43 +13,19 @@ type CalenderDate
   description: String!
   isRest: Boolean!
   isHoliday: Boolean!
+  unusualOpening: Boolean
+  reservation: Reservation
 }
 
-type Reservation
-  @model
-  @auth(
-    rules: [
-      { allow: public, operations: [read], provider: iam }
-      { allow: groups, groups: ["Admin", "cafe-berry"] }
-    ]
-  ) {
-  id: ID!
-  date: AWSDate! @index(name: "byDate", sortKeyFields: ["dateTime"])
-  dateTime: AWSDateTime!
-  number: Int!
-  type: ReservationType!
-  status: ReservationStatus!
-    @index(
-      name: "byStatus"
-      queryField: "ReservationByDateTime"
-      sortKeyFields: ["dateTime"]
-    )
-  name: String
-    @auth(rules: [{ allow: groups, groups: ["Admin", "cafe-berry"] }])
-  note: String
-    @auth(rules: [{ allow: groups, groups: ["Admin", "cafe-berry"] }])
+type Reservation {
+  lunch: ReservationStatus!
+  bento: ReservationStatus!
 }
 
-enum ReservationType {
-  LUNCH
-  TEA
-  BENTO
-}
-
-enum ReservationStatus {
-  REQUESTED
-  APPROVED
-  ENDED
+enum ReservationStatus{
+  AVAILABLE
+  BUSY
+  UNAVAILABLE
 }
 
 type Article

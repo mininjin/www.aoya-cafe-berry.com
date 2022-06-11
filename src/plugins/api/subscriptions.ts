@@ -10,6 +10,11 @@ export const onCreateCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
+      unusualOpening
+      reservation {
+        lunch
+        bento
+      }
       createdAt
       updatedAt
     }
@@ -23,6 +28,11 @@ export const onUpdateCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
+      unusualOpening
+      reservation {
+        lunch
+        bento
+      }
       createdAt
       updatedAt
     }
@@ -36,54 +46,11 @@ export const onDeleteCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateReservation = /* GraphQL */ `
-  subscription OnCreateReservation {
-    onCreateReservation {
-      id
-      date
-      dateTime
-      number
-      type
-      status
-      name
-      note
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateReservation = /* GraphQL */ `
-  subscription OnUpdateReservation {
-    onUpdateReservation {
-      id
-      date
-      dateTime
-      number
-      type
-      status
-      name
-      note
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteReservation = /* GraphQL */ `
-  subscription OnDeleteReservation {
-    onDeleteReservation {
-      id
-      date
-      dateTime
-      number
-      type
-      status
-      name
-      note
+      unusualOpening
+      reservation {
+        lunch
+        bento
+      }
       createdAt
       updatedAt
     }

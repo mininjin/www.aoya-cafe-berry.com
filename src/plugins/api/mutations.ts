@@ -13,6 +13,11 @@ export const createCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
+      unusualOpening
+      reservation {
+        lunch
+        bento
+      }
       createdAt
       updatedAt
     }
@@ -29,6 +34,11 @@ export const updateCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
+      unusualOpening
+      reservation {
+        lunch
+        bento
+      }
       createdAt
       updatedAt
     }
@@ -45,63 +55,11 @@ export const deleteCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createReservation = /* GraphQL */ `
-  mutation CreateReservation(
-    $input: CreateReservationInput!
-    $condition: ModelReservationConditionInput
-  ) {
-    createReservation(input: $input, condition: $condition) {
-      id
-      date
-      dateTime
-      number
-      type
-      status
-      name
-      note
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateReservation = /* GraphQL */ `
-  mutation UpdateReservation(
-    $input: UpdateReservationInput!
-    $condition: ModelReservationConditionInput
-  ) {
-    updateReservation(input: $input, condition: $condition) {
-      id
-      date
-      dateTime
-      number
-      type
-      status
-      name
-      note
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteReservation = /* GraphQL */ `
-  mutation DeleteReservation(
-    $input: DeleteReservationInput!
-    $condition: ModelReservationConditionInput
-  ) {
-    deleteReservation(input: $input, condition: $condition) {
-      id
-      date
-      dateTime
-      number
-      type
-      status
-      name
-      note
+      unusualOpening
+      reservation {
+        lunch
+        bento
+      }
       createdAt
       updatedAt
     }

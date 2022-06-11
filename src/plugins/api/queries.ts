@@ -10,6 +10,11 @@ export const getCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
+      unusualOpening
+      reservation {
+        lunch
+        bento
+      }
       createdAt
       updatedAt
     }
@@ -28,78 +33,11 @@ export const listCalenderDates = /* GraphQL */ `
         description
         isRest
         isHoliday
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getReservation = /* GraphQL */ `
-  query GetReservation($id: ID!) {
-    getReservation(id: $id) {
-      id
-      date
-      dateTime
-      number
-      type
-      status
-      name
-      note
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listReservations = /* GraphQL */ `
-  query ListReservations(
-    $filter: ModelReservationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listReservations(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        date
-        dateTime
-        number
-        type
-        status
-        name
-        note
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const reservationByDateTime = /* GraphQL */ `
-  query ReservationByDateTime(
-    $status: ReservationStatus!
-    $dateTime: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelReservationFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    ReservationByDateTime(
-      status: $status
-      dateTime: $dateTime
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        date
-        dateTime
-        number
-        type
-        status
-        name
-        note
+        unusualOpening
+        reservation {
+          lunch
+          bento
+        }
         createdAt
         updatedAt
       }
