@@ -13,8 +13,13 @@ type CalenderDate
   description: String!
   isRest: Boolean!
   isHoliday: Boolean!
-  unusualOpening: Boolean
+  unusualOpening: Opening
   reservation: Reservation
+}
+
+type Opening {
+  start: String!
+  end: String!
 }
 
 type Reservation {
@@ -22,7 +27,7 @@ type Reservation {
   bento: ReservationStatus!
 }
 
-enum ReservationStatus{
+enum ReservationStatus {
   AVAILABLE
   BUSY
   UNAVAILABLE
