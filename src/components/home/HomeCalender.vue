@@ -13,9 +13,15 @@
         </h2>
         <p class="text-xl">
           <span v-if="data.data?.isRest" class="text-white">{{ data.data.description || REST_DAY_DESCRIPTION }}</span>
+          <span v-else-if="data.data?.unusualOpening">
+            {{ data.data?.description || UNUSUAL_OPENING_DESCRIPTION }}
+          </span>
           <span v-else>
             {{ data.data?.description || NORMAL_DAY_DESCRIPTION }}
           </span>
+        </p>
+        <p v-if="data.data?.unusualOpening" class="text-xl">
+          営業時間：{{ data.data.unusualOpening.start }}〜{{ data.data.unusualOpening.end }}
         </p>
       </div>
     </Calender>
@@ -25,7 +31,7 @@
 <script setup lang="ts">
 import Calender from '@/components/Calender.vue';
 import SectionTitle from '@/components/UI/SectionTitle.vue';
-import { DAY_LABELS, WEEKEND, NORMAL_DAY_DESCRIPTION, REST_DAY_DESCRIPTION } from "@/constants"
+import { DAY_LABELS, WEEKEND, NORMAL_DAY_DESCRIPTION, REST_DAY_DESCRIPTION, UNUSUAL_OPENING_DESCRIPTION } from "@/constants"
 import { ref } from 'vue';
 
 const loading = ref(false);

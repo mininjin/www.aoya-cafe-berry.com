@@ -19,6 +19,7 @@ export const WEEKEND = [0, 6];
 export const DAY_LABELS = ["日", "月", "火", "水", "木", "金", "土"];
 export const NORMAL_DAY_DESCRIPTION = "通常営業です！";
 export const REST_DAY_DESCRIPTION = "お休み";
+export const UNUSUAL_OPENING_DESCRIPTION = "時短営業です！";
 export const ARTICLE_LIMIT = 2;
 export const ARTICLE_LIMIT_MONTHLY = 10;
 export const TITLE_MAX_LENGTH = 30;
