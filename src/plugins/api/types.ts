@@ -8,8 +8,13 @@ export type CreateCalenderDateInput = {
   description: string,
   isRest: boolean,
   isHoliday: boolean,
-  unusualOpening?: boolean | null,
+  unusualOpening?: OpeningInput | null,
   reservation?: ReservationInput | null,
+};
+
+export type OpeningInput = {
+  start: string,
+  end: string,
 };
 
 export type ReservationInput = {
@@ -29,7 +34,6 @@ export type ModelCalenderDateConditionInput = {
   description?: ModelStringInput | null,
   isRest?: ModelBooleanInput | null,
   isHoliday?: ModelBooleanInput | null,
-  unusualOpening?: ModelBooleanInput | null,
   and?: Array< ModelCalenderDateConditionInput | null > | null,
   or?: Array< ModelCalenderDateConditionInput | null > | null,
   not?: ModelCalenderDateConditionInput | null,
@@ -89,10 +93,16 @@ export type CalenderDate = {
   description: string,
   isRest: boolean,
   isHoliday: boolean,
-  unusualOpening?: boolean | null,
+  unusualOpening?: Opening | null,
   reservation?: Reservation | null,
   createdAt: string,
   updatedAt: string,
+};
+
+export type Opening = {
+  __typename: "Opening",
+  start: string,
+  end: string,
 };
 
 export type Reservation = {
@@ -107,7 +117,7 @@ export type UpdateCalenderDateInput = {
   description?: string | null,
   isRest?: boolean | null,
   isHoliday?: boolean | null,
-  unusualOpening?: boolean | null,
+  unusualOpening?: OpeningInput | null,
   reservation?: ReservationInput | null,
 };
 
@@ -192,7 +202,6 @@ export type ModelCalenderDateFilterInput = {
   description?: ModelStringInput | null,
   isRest?: ModelBooleanInput | null,
   isHoliday?: ModelBooleanInput | null,
-  unusualOpening?: ModelBooleanInput | null,
   and?: Array< ModelCalenderDateFilterInput | null > | null,
   or?: Array< ModelCalenderDateFilterInput | null > | null,
   not?: ModelCalenderDateFilterInput | null,
@@ -267,7 +276,11 @@ export type CreateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    unusualOpening?: boolean | null,
+    unusualOpening?:  {
+      __typename: "Opening",
+      start: string,
+      end: string,
+    } | null,
     reservation?:  {
       __typename: "Reservation",
       lunch: ReservationStatus,
@@ -291,7 +304,11 @@ export type UpdateCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    unusualOpening?: boolean | null,
+    unusualOpening?:  {
+      __typename: "Opening",
+      start: string,
+      end: string,
+    } | null,
     reservation?:  {
       __typename: "Reservation",
       lunch: ReservationStatus,
@@ -315,7 +332,11 @@ export type DeleteCalenderDateMutation = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    unusualOpening?: boolean | null,
+    unusualOpening?:  {
+      __typename: "Opening",
+      start: string,
+      end: string,
+    } | null,
     reservation?:  {
       __typename: "Reservation",
       lunch: ReservationStatus,
@@ -413,7 +434,11 @@ export type GetCalenderDateQuery = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    unusualOpening?: boolean | null,
+    unusualOpening?:  {
+      __typename: "Opening",
+      start: string,
+      end: string,
+    } | null,
     reservation?:  {
       __typename: "Reservation",
       lunch: ReservationStatus,
@@ -440,7 +465,11 @@ export type ListCalenderDatesQuery = {
       description: string,
       isRest: boolean,
       isHoliday: boolean,
-      unusualOpening?: boolean | null,
+      unusualOpening?:  {
+        __typename: "Opening",
+        start: string,
+        end: string,
+      } | null,
       reservation?:  {
         __typename: "Reservation",
         lunch: ReservationStatus,
@@ -548,7 +577,11 @@ export type OnCreateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    unusualOpening?: boolean | null,
+    unusualOpening?:  {
+      __typename: "Opening",
+      start: string,
+      end: string,
+    } | null,
     reservation?:  {
       __typename: "Reservation",
       lunch: ReservationStatus,
@@ -567,7 +600,11 @@ export type OnUpdateCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    unusualOpening?: boolean | null,
+    unusualOpening?:  {
+      __typename: "Opening",
+      start: string,
+      end: string,
+    } | null,
     reservation?:  {
       __typename: "Reservation",
       lunch: ReservationStatus,
@@ -586,7 +623,11 @@ export type OnDeleteCalenderDateSubscription = {
     description: string,
     isRest: boolean,
     isHoliday: boolean,
-    unusualOpening?: boolean | null,
+    unusualOpening?:  {
+      __typename: "Opening",
+      start: string,
+      end: string,
+    } | null,
     reservation?:  {
       __typename: "Reservation",
       lunch: ReservationStatus,

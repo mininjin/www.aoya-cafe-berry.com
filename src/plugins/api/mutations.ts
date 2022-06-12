@@ -13,7 +13,10 @@ export const createCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      unusualOpening
+      unusualOpening {
+        start
+        end
+      }
       reservation {
         lunch
         bento
@@ -34,7 +37,10 @@ export const updateCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      unusualOpening
+      unusualOpening {
+        start
+        end
+      }
       reservation {
         lunch
         bento
@@ -55,7 +61,10 @@ export const deleteCalenderDate = /* GraphQL */ `
       description
       isRest
       isHoliday
-      unusualOpening
+      unusualOpening {
+        start
+        end
+      }
       reservation {
         lunch
         bento
