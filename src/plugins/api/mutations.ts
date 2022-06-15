@@ -140,3 +140,60 @@ export const deleteArticle = /* GraphQL */ `
     }
   }
 `;
+export const createBento = /* GraphQL */ `
+  mutation CreateBento(
+    $input: CreateBentoInput!
+    $condition: ModelBentoConditionInput
+  ) {
+    createBento(input: $input, condition: $condition) {
+      id
+      description
+      price
+      images {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBento = /* GraphQL */ `
+  mutation UpdateBento(
+    $input: UpdateBentoInput!
+    $condition: ModelBentoConditionInput
+  ) {
+    updateBento(input: $input, condition: $condition) {
+      id
+      description
+      price
+      images {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBento = /* GraphQL */ `
+  mutation DeleteBento(
+    $input: DeleteBentoInput!
+    $condition: ModelBentoConditionInput
+  ) {
+    deleteBento(input: $input, condition: $condition) {
+      id
+      description
+      price
+      images {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;

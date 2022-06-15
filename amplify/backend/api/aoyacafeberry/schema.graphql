@@ -55,6 +55,20 @@ type Article
   thumbnail: S3Object!
 }
 
+type Bento
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: iam, operations: [read] }
+      { allow: groups, groups: ["Admin", "cafe-berry"] }
+    ]
+  ) {
+  id: ID!
+  description: String!
+  price: Int!
+  images: [S3Object]!
+}
+
 type S3Object {
   bucket: String!
   region: String!

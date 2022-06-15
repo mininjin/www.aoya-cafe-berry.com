@@ -132,3 +132,42 @@ export const articleByPublishedAt = /* GraphQL */ `
     }
   }
 `;
+export const getBento = /* GraphQL */ `
+  query GetBento($id: ID!) {
+    getBento(id: $id) {
+      id
+      description
+      price
+      images {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBentos = /* GraphQL */ `
+  query ListBentos(
+    $filter: ModelBentoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBentos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        description
+        price
+        images {
+          bucket
+          region
+          key
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

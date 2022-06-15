@@ -122,3 +122,51 @@ export const onDeleteArticle = /* GraphQL */ `
     }
   }
 `;
+export const onCreateBento = /* GraphQL */ `
+  subscription OnCreateBento {
+    onCreateBento {
+      id
+      description
+      price
+      images {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBento = /* GraphQL */ `
+  subscription OnUpdateBento {
+    onUpdateBento {
+      id
+      description
+      price
+      images {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBento = /* GraphQL */ `
+  subscription OnDeleteBento {
+    onDeleteBento {
+      id
+      description
+      price
+      images {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;

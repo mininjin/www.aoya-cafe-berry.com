@@ -196,6 +196,54 @@ export type DeleteArticleInput = {
   id: string,
 };
 
+export type CreateBentoInput = {
+  id?: string | null,
+  description: string,
+  price: number,
+  images: Array< S3ObjectInput | null >,
+};
+
+export type ModelBentoConditionInput = {
+  description?: ModelStringInput | null,
+  price?: ModelIntInput | null,
+  and?: Array< ModelBentoConditionInput | null > | null,
+  or?: Array< ModelBentoConditionInput | null > | null,
+  not?: ModelBentoConditionInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type Bento = {
+  __typename: "Bento",
+  id: string,
+  description: string,
+  price: number,
+  images:  Array<S3Object | null >,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type UpdateBentoInput = {
+  id: string,
+  description?: string | null,
+  price?: number | null,
+  images?: Array< S3ObjectInput | null > | null,
+};
+
+export type DeleteBentoInput = {
+  id: string,
+};
+
 export type ModelCalenderDateFilterInput = {
   id?: ModelIDInput | null,
   date?: ModelStringInput | null,
@@ -262,6 +310,21 @@ export enum ModelSortDirection {
   DESC = "DESC",
 }
 
+
+export type ModelBentoFilterInput = {
+  id?: ModelIDInput | null,
+  description?: ModelStringInput | null,
+  price?: ModelIntInput | null,
+  and?: Array< ModelBentoFilterInput | null > | null,
+  or?: Array< ModelBentoFilterInput | null > | null,
+  not?: ModelBentoFilterInput | null,
+};
+
+export type ModelBentoConnection = {
+  __typename: "ModelBentoConnection",
+  items:  Array<Bento | null >,
+  nextToken?: string | null,
+};
 
 export type CreateCalenderDateMutationVariables = {
   input: CreateCalenderDateInput,
@@ -422,6 +485,72 @@ export type DeleteArticleMutation = {
   } | null,
 };
 
+export type CreateBentoMutationVariables = {
+  input: CreateBentoInput,
+  condition?: ModelBentoConditionInput | null,
+};
+
+export type CreateBentoMutation = {
+  createBento?:  {
+    __typename: "Bento",
+    id: string,
+    description: string,
+    price: number,
+    images:  Array< {
+      __typename: "S3Object",
+      bucket: string,
+      region: string,
+      key: string,
+    } | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateBentoMutationVariables = {
+  input: UpdateBentoInput,
+  condition?: ModelBentoConditionInput | null,
+};
+
+export type UpdateBentoMutation = {
+  updateBento?:  {
+    __typename: "Bento",
+    id: string,
+    description: string,
+    price: number,
+    images:  Array< {
+      __typename: "S3Object",
+      bucket: string,
+      region: string,
+      key: string,
+    } | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteBentoMutationVariables = {
+  input: DeleteBentoInput,
+  condition?: ModelBentoConditionInput | null,
+};
+
+export type DeleteBentoMutation = {
+  deleteBento?:  {
+    __typename: "Bento",
+    id: string,
+    description: string,
+    price: number,
+    images:  Array< {
+      __typename: "S3Object",
+      bucket: string,
+      region: string,
+      key: string,
+    } | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetCalenderDateQueryVariables = {
   id: string,
 };
@@ -569,6 +698,54 @@ export type ArticleByPublishedAtQuery = {
   } | null,
 };
 
+export type GetBentoQueryVariables = {
+  id: string,
+};
+
+export type GetBentoQuery = {
+  getBento?:  {
+    __typename: "Bento",
+    id: string,
+    description: string,
+    price: number,
+    images:  Array< {
+      __typename: "S3Object",
+      bucket: string,
+      region: string,
+      key: string,
+    } | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListBentosQueryVariables = {
+  filter?: ModelBentoFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListBentosQuery = {
+  listBentos?:  {
+    __typename: "ModelBentoConnection",
+    items:  Array< {
+      __typename: "Bento",
+      id: string,
+      description: string,
+      price: number,
+      images:  Array< {
+        __typename: "S3Object",
+        bucket: string,
+        region: string,
+        key: string,
+      } | null >,
+      createdAt: string,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type OnCreateCalenderDateSubscription = {
   onCreateCalenderDate?:  {
     __typename: "CalenderDate",
@@ -693,6 +870,57 @@ export type OnDeleteArticleSubscription = {
       region: string,
       key: string,
     },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateBentoSubscription = {
+  onCreateBento?:  {
+    __typename: "Bento",
+    id: string,
+    description: string,
+    price: number,
+    images:  Array< {
+      __typename: "S3Object",
+      bucket: string,
+      region: string,
+      key: string,
+    } | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateBentoSubscription = {
+  onUpdateBento?:  {
+    __typename: "Bento",
+    id: string,
+    description: string,
+    price: number,
+    images:  Array< {
+      __typename: "S3Object",
+      bucket: string,
+      region: string,
+      key: string,
+    } | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteBentoSubscription = {
+  onDeleteBento?:  {
+    __typename: "Bento",
+    id: string,
+    description: string,
+    price: number,
+    images:  Array< {
+      __typename: "S3Object",
+      bucket: string,
+      region: string,
+      key: string,
+    } | null >,
     createdAt: string,
     updatedAt: string,
   } | null,
