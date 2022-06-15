@@ -137,7 +137,10 @@ export const getBento = /* GraphQL */ `
     getBento(id: $id) {
       id
       description
-      price
+      price {
+        adult
+        child
+      }
       images {
         bucket
         region
@@ -158,7 +161,10 @@ export const listBentos = /* GraphQL */ `
       items {
         id
         description
-        price
+        price {
+          adult
+          child
+        }
         images {
           bucket
           region

@@ -148,7 +148,10 @@ export const createBento = /* GraphQL */ `
     createBento(input: $input, condition: $condition) {
       id
       description
-      price
+      price {
+        adult
+        child
+      }
       images {
         bucket
         region
@@ -167,7 +170,10 @@ export const updateBento = /* GraphQL */ `
     updateBento(input: $input, condition: $condition) {
       id
       description
-      price
+      price {
+        adult
+        child
+      }
       images {
         bucket
         region
@@ -186,7 +192,10 @@ export const deleteBento = /* GraphQL */ `
     deleteBento(input: $input, condition: $condition) {
       id
       description
-      price
+      price {
+        adult
+        child
+      }
       images {
         bucket
         region

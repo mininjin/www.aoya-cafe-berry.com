@@ -199,44 +199,42 @@ export type DeleteArticleInput = {
 export type CreateBentoInput = {
   id?: string | null,
   description: string,
-  price: number,
+  price: BentoPriceInput,
   images: Array< S3ObjectInput | null >,
+};
+
+export type BentoPriceInput = {
+  adult: number,
+  child: number,
 };
 
 export type ModelBentoConditionInput = {
   description?: ModelStringInput | null,
-  price?: ModelIntInput | null,
   and?: Array< ModelBentoConditionInput | null > | null,
   or?: Array< ModelBentoConditionInput | null > | null,
   not?: ModelBentoConditionInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
 };
 
 export type Bento = {
   __typename: "Bento",
   id: string,
   description: string,
-  price: number,
+  price: BentoPrice,
   images:  Array<S3Object | null >,
   createdAt: string,
   updatedAt: string,
 };
 
+export type BentoPrice = {
+  __typename: "BentoPrice",
+  adult: number,
+  child: number,
+};
+
 export type UpdateBentoInput = {
   id: string,
   description?: string | null,
-  price?: number | null,
+  price?: BentoPriceInput | null,
   images?: Array< S3ObjectInput | null > | null,
 };
 
@@ -314,7 +312,6 @@ export enum ModelSortDirection {
 export type ModelBentoFilterInput = {
   id?: ModelIDInput | null,
   description?: ModelStringInput | null,
-  price?: ModelIntInput | null,
   and?: Array< ModelBentoFilterInput | null > | null,
   or?: Array< ModelBentoFilterInput | null > | null,
   not?: ModelBentoFilterInput | null,
@@ -495,7 +492,11 @@ export type CreateBentoMutation = {
     __typename: "Bento",
     id: string,
     description: string,
-    price: number,
+    price:  {
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+    },
     images:  Array< {
       __typename: "S3Object",
       bucket: string,
@@ -517,7 +518,11 @@ export type UpdateBentoMutation = {
     __typename: "Bento",
     id: string,
     description: string,
-    price: number,
+    price:  {
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+    },
     images:  Array< {
       __typename: "S3Object",
       bucket: string,
@@ -539,7 +544,11 @@ export type DeleteBentoMutation = {
     __typename: "Bento",
     id: string,
     description: string,
-    price: number,
+    price:  {
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+    },
     images:  Array< {
       __typename: "S3Object",
       bucket: string,
@@ -707,7 +716,11 @@ export type GetBentoQuery = {
     __typename: "Bento",
     id: string,
     description: string,
-    price: number,
+    price:  {
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+    },
     images:  Array< {
       __typename: "S3Object",
       bucket: string,
@@ -732,7 +745,11 @@ export type ListBentosQuery = {
       __typename: "Bento",
       id: string,
       description: string,
-      price: number,
+      price:  {
+        __typename: "BentoPrice",
+        adult: number,
+        child: number,
+      },
       images:  Array< {
         __typename: "S3Object",
         bucket: string,
@@ -880,7 +897,11 @@ export type OnCreateBentoSubscription = {
     __typename: "Bento",
     id: string,
     description: string,
-    price: number,
+    price:  {
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+    },
     images:  Array< {
       __typename: "S3Object",
       bucket: string,
@@ -897,7 +918,11 @@ export type OnUpdateBentoSubscription = {
     __typename: "Bento",
     id: string,
     description: string,
-    price: number,
+    price:  {
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+    },
     images:  Array< {
       __typename: "S3Object",
       bucket: string,
@@ -914,7 +939,11 @@ export type OnDeleteBentoSubscription = {
     __typename: "Bento",
     id: string,
     description: string,
-    price: number,
+    price:  {
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+    },
     images:  Array< {
       __typename: "S3Object",
       bucket: string,

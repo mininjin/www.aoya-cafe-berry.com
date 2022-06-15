@@ -65,8 +65,13 @@ type Bento
   ) {
   id: ID!
   description: String!
-  price: Int!
+  price: BentoPrice!
   images: [S3Object]!
+}
+
+type BentoPrice {
+  adult: Int!
+  child: Int!
 }
 
 type S3Object {

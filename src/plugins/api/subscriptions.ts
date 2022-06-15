@@ -127,7 +127,10 @@ export const onCreateBento = /* GraphQL */ `
     onCreateBento {
       id
       description
-      price
+      price {
+        adult
+        child
+      }
       images {
         bucket
         region
@@ -143,7 +146,10 @@ export const onUpdateBento = /* GraphQL */ `
     onUpdateBento {
       id
       description
-      price
+      price {
+        adult
+        child
+      }
       images {
         bucket
         region
@@ -159,7 +165,10 @@ export const onDeleteBento = /* GraphQL */ `
     onDeleteBento {
       id
       description
-      price
+      price {
+        adult
+        child
+      }
       images {
         bucket
         region
