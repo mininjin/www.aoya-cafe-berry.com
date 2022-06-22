@@ -11,8 +11,8 @@
       <div class="flex-grow text-left text-sub px-4 text-xl font-header font-bold">
         café Berry
       </div>
-      <div class="flex items-center flex-grow-0 px-3" @click="toggleMenu">
-        <font-awesome-icon icon="bars" class="w-5 text-sub inline lg:hidden" />
+      <div class="flex items-center flex-grow-0" @click="toggleMenu">
+        <span class="p-2 rounded-lg font-header text-sub bg-white text-xl border-4 border-sub shadow-xl">メニュー</span>
       </div>
     </div>
   </div>
@@ -43,13 +43,15 @@
             ">
             café Berry
           </div>
-          <button type="button" class="flex items-center flex-grow-0 px-3 lg:opacity-0" :disabled="!menu"
+          <button type="button" class="flex items-center flex-grow-0 lg:opacity-0" :disabled="!menu"
             @click="toggleMenu">
-            <transition enter-active-class="transition-all duration-500" enter-from-class="opacity-0"
-              enter-to-class="opacity-1" mode="out-in">
-              <font-awesome-icon v-if="menu" icon="xmark" class="w-5 text-sub inline lg:hidden" />
-              <font-awesome-icon v-else icon="bars" class="w-5 text-sub inline lg:hidden" />
-            </transition>
+            <span class="p-2 rounded-lg font-header text-sub bg-white text-xl border-4 border-sub shadow-xl lg:hidden">
+              <transition enter-active-class="transition-all duration-500" enter-from-class="opacity-0"
+                enter-to-class="opacity-1" mode="out-in">
+                <span v-if="menu">閉じる</span>
+                <span v-else>メニュー</span>
+              </transition>
+            </span>
           </button>
         </div>
         <div :class="`flex-1 lg:w-full p-5 text-sub font-bold left bg-header inline-flex flex-col items-stretch transition-all duration-500 transform ${menu ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'
