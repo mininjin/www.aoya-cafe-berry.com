@@ -206,6 +206,7 @@ export type CreateBentoInput = {
 export type BentoPriceInput = {
   adult: number,
   child: number,
+  bentoId?: string | null,
 };
 
 export type ModelBentoConditionInput = {
@@ -229,6 +230,7 @@ export type BentoPrice = {
   __typename: "BentoPrice",
   adult: number,
   child: number,
+  bentoId?: string | null,
 };
 
 export type UpdateBentoInput = {
@@ -250,7 +252,7 @@ export type CreateReservationContentInput = {
   type: ReservationType,
   number: ReservationNumberInput,
   note?: string | null,
-  price?: ReservationPriceInput | null,
+  price?: BentoPriceInput | null,
 };
 
 export enum ReservationType {
@@ -263,12 +265,6 @@ export enum ReservationType {
 export type ReservationNumberInput = {
   adults: number,
   children: number,
-};
-
-export type ReservationPriceInput = {
-  bentoId: string,
-  adults?: number | null,
-  children?: number | null,
 };
 
 export type ModelReservationContentConditionInput = {
@@ -296,7 +292,7 @@ export type ReservationContent = {
   type: ReservationType,
   number: ReservationNumber,
   note?: string | null,
-  price?: ReservationPrice | null,
+  price?: BentoPrice | null,
   createdAt: string,
   updatedAt: string,
   owner?: string | null,
@@ -308,13 +304,6 @@ export type ReservationNumber = {
   children: number,
 };
 
-export type ReservationPrice = {
-  __typename: "ReservationPrice",
-  bentoId: string,
-  adults?: number | null,
-  children?: number | null,
-};
-
 export type UpdateReservationContentInput = {
   id: string,
   name?: string | null,
@@ -323,7 +312,7 @@ export type UpdateReservationContentInput = {
   type?: ReservationType | null,
   number?: ReservationNumberInput | null,
   note?: string | null,
-  price?: ReservationPriceInput | null,
+  price?: BentoPriceInput | null,
 };
 
 export type DeleteReservationContentInput = {
@@ -602,6 +591,7 @@ export type CreateBentoMutation = {
       __typename: "BentoPrice",
       adult: number,
       child: number,
+      bentoId?: string | null,
     },
     images:  Array< {
       __typename: "S3Object",
@@ -628,6 +618,7 @@ export type UpdateBentoMutation = {
       __typename: "BentoPrice",
       adult: number,
       child: number,
+      bentoId?: string | null,
     },
     images:  Array< {
       __typename: "S3Object",
@@ -654,6 +645,7 @@ export type DeleteBentoMutation = {
       __typename: "BentoPrice",
       adult: number,
       child: number,
+      bentoId?: string | null,
     },
     images:  Array< {
       __typename: "S3Object",
@@ -686,10 +678,10 @@ export type CreateReservationContentMutation = {
     },
     note?: string | null,
     price?:  {
-      __typename: "ReservationPrice",
-      bentoId: string,
-      adults?: number | null,
-      children?: number | null,
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+      bentoId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -717,10 +709,10 @@ export type UpdateReservationContentMutation = {
     },
     note?: string | null,
     price?:  {
-      __typename: "ReservationPrice",
-      bentoId: string,
-      adults?: number | null,
-      children?: number | null,
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+      bentoId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -748,10 +740,10 @@ export type DeleteReservationContentMutation = {
     },
     note?: string | null,
     price?:  {
-      __typename: "ReservationPrice",
-      bentoId: string,
-      adults?: number | null,
-      children?: number | null,
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+      bentoId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -919,6 +911,7 @@ export type GetBentoQuery = {
       __typename: "BentoPrice",
       adult: number,
       child: number,
+      bentoId?: string | null,
     },
     images:  Array< {
       __typename: "S3Object",
@@ -948,6 +941,7 @@ export type ListBentosQuery = {
         __typename: "BentoPrice",
         adult: number,
         child: number,
+        bentoId?: string | null,
       },
       images:  Array< {
         __typename: "S3Object",
@@ -981,10 +975,10 @@ export type GetReservationContentQuery = {
     },
     note?: string | null,
     price?:  {
-      __typename: "ReservationPrice",
-      bentoId: string,
-      adults?: number | null,
-      children?: number | null,
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+      bentoId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -1015,10 +1009,10 @@ export type ListReservationContentsQuery = {
       },
       note?: string | null,
       price?:  {
-        __typename: "ReservationPrice",
-        bentoId: string,
-        adults?: number | null,
-        children?: number | null,
+        __typename: "BentoPrice",
+        adult: number,
+        child: number,
+        bentoId?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
@@ -1166,6 +1160,7 @@ export type OnCreateBentoSubscription = {
       __typename: "BentoPrice",
       adult: number,
       child: number,
+      bentoId?: string | null,
     },
     images:  Array< {
       __typename: "S3Object",
@@ -1187,6 +1182,7 @@ export type OnUpdateBentoSubscription = {
       __typename: "BentoPrice",
       adult: number,
       child: number,
+      bentoId?: string | null,
     },
     images:  Array< {
       __typename: "S3Object",
@@ -1208,6 +1204,7 @@ export type OnDeleteBentoSubscription = {
       __typename: "BentoPrice",
       adult: number,
       child: number,
+      bentoId?: string | null,
     },
     images:  Array< {
       __typename: "S3Object",
@@ -1239,10 +1236,10 @@ export type OnCreateReservationContentSubscription = {
     },
     note?: string | null,
     price?:  {
-      __typename: "ReservationPrice",
-      bentoId: string,
-      adults?: number | null,
-      children?: number | null,
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+      bentoId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -1269,10 +1266,10 @@ export type OnUpdateReservationContentSubscription = {
     },
     note?: string | null,
     price?:  {
-      __typename: "ReservationPrice",
-      bentoId: string,
-      adults?: number | null,
-      children?: number | null,
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+      bentoId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
@@ -1299,10 +1296,10 @@ export type OnDeleteReservationContentSubscription = {
     },
     note?: string | null,
     price?:  {
-      __typename: "ReservationPrice",
-      bentoId: string,
-      adults?: number | null,
-      children?: number | null,
+      __typename: "BentoPrice",
+      adult: number,
+      child: number,
+      bentoId?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,

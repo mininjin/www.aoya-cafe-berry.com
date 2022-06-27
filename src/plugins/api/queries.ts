@@ -140,6 +140,7 @@ export const getBento = /* GraphQL */ `
       price {
         adult
         child
+        bentoId
       }
       images {
         bucket
@@ -164,6 +165,7 @@ export const listBentos = /* GraphQL */ `
         price {
           adult
           child
+          bentoId
         }
         images {
           bucket
@@ -191,9 +193,9 @@ export const getReservationContent = /* GraphQL */ `
       }
       note
       price {
+        adult
+        child
         bentoId
-        adults
-        children
       }
       createdAt
       updatedAt
@@ -224,9 +226,9 @@ export const listReservationContents = /* GraphQL */ `
         }
         note
         price {
+          adult
+          child
           bentoId
-          adults
-          children
         }
         createdAt
         updatedAt

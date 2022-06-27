@@ -75,6 +75,7 @@ type Bento
 type BentoPrice {
   adult: Int!
   child: Int!
+  bentoId: String
 }
 
 type S3Object {
@@ -102,18 +103,12 @@ type ReservationContent
   type: ReservationType!
   number: ReservationNumber!
   note: String
-  price: ReservationPrice
+  price: BentoPrice
 }
 
 type ReservationNumber {
   adults: Int!
   children: Int!
-}
-
-type ReservationPrice {
-  bentoId: String!
-  adults: Int
-  children: Int
 }
 
 enum ReservationType {

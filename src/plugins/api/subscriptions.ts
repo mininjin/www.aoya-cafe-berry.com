@@ -130,6 +130,7 @@ export const onCreateBento = /* GraphQL */ `
       price {
         adult
         child
+        bentoId
       }
       images {
         bucket
@@ -149,6 +150,7 @@ export const onUpdateBento = /* GraphQL */ `
       price {
         adult
         child
+        bentoId
       }
       images {
         bucket
@@ -168,6 +170,7 @@ export const onDeleteBento = /* GraphQL */ `
       price {
         adult
         child
+        bentoId
       }
       images {
         bucket
@@ -193,9 +196,9 @@ export const onCreateReservationContent = /* GraphQL */ `
       }
       note
       price {
+        adult
+        child
         bentoId
-        adults
-        children
       }
       createdAt
       updatedAt
@@ -217,9 +220,9 @@ export const onUpdateReservationContent = /* GraphQL */ `
       }
       note
       price {
+        adult
+        child
         bentoId
-        adults
-        children
       }
       createdAt
       updatedAt
@@ -241,9 +244,9 @@ export const onDeleteReservationContent = /* GraphQL */ `
       }
       note
       price {
+        adult
+        child
         bentoId
-        adults
-        children
       }
       createdAt
       updatedAt
