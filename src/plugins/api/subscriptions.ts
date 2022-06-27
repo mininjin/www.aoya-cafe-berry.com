@@ -179,3 +179,75 @@ export const onDeleteBento = /* GraphQL */ `
     }
   }
 `;
+export const onCreateReservationContent = /* GraphQL */ `
+  subscription OnCreateReservationContent($owner: String) {
+    onCreateReservationContent(owner: $owner) {
+      id
+      name
+      date
+      time
+      type
+      number {
+        adults
+        children
+      }
+      note
+      price {
+        bentoId
+        adults
+        children
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateReservationContent = /* GraphQL */ `
+  subscription OnUpdateReservationContent($owner: String) {
+    onUpdateReservationContent(owner: $owner) {
+      id
+      name
+      date
+      time
+      type
+      number {
+        adults
+        children
+      }
+      note
+      price {
+        bentoId
+        adults
+        children
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteReservationContent = /* GraphQL */ `
+  subscription OnDeleteReservationContent($owner: String) {
+    onDeleteReservationContent(owner: $owner) {
+      id
+      name
+      date
+      time
+      type
+      number {
+        adults
+        children
+      }
+      note
+      price {
+        bentoId
+        adults
+        children
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

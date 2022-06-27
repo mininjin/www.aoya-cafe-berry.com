@@ -177,3 +177,62 @@ export const listBentos = /* GraphQL */ `
     }
   }
 `;
+export const getReservationContent = /* GraphQL */ `
+  query GetReservationContent($id: ID!) {
+    getReservationContent(id: $id) {
+      id
+      name
+      date
+      time
+      type
+      number {
+        adults
+        children
+      }
+      note
+      price {
+        bentoId
+        adults
+        children
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listReservationContents = /* GraphQL */ `
+  query ListReservationContents(
+    $filter: ModelReservationContentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listReservationContents(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        date
+        time
+        type
+        number {
+          adults
+          children
+        }
+        note
+        price {
+          bentoId
+          adults
+          children
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;

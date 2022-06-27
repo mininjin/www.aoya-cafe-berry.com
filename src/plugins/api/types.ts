@@ -242,6 +242,94 @@ export type DeleteBentoInput = {
   id: string,
 };
 
+export type CreateReservationContentInput = {
+  id?: string | null,
+  name: string,
+  date: string,
+  time: string,
+  type: ReservationType,
+  number: ReservationNumberInput,
+  note?: string | null,
+  price?: ReservationPriceInput | null,
+};
+
+export enum ReservationType {
+  LUNCH = "LUNCH",
+  TEE = "TEE",
+  BENTO = "BENTO",
+}
+
+
+export type ReservationNumberInput = {
+  adults: number,
+  children: number,
+};
+
+export type ReservationPriceInput = {
+  bentoId: string,
+  adults?: number | null,
+  children?: number | null,
+};
+
+export type ModelReservationContentConditionInput = {
+  name?: ModelStringInput | null,
+  date?: ModelStringInput | null,
+  time?: ModelStringInput | null,
+  type?: ModelReservationTypeInput | null,
+  note?: ModelStringInput | null,
+  and?: Array< ModelReservationContentConditionInput | null > | null,
+  or?: Array< ModelReservationContentConditionInput | null > | null,
+  not?: ModelReservationContentConditionInput | null,
+};
+
+export type ModelReservationTypeInput = {
+  eq?: ReservationType | null,
+  ne?: ReservationType | null,
+};
+
+export type ReservationContent = {
+  __typename: "ReservationContent",
+  id: string,
+  name: string,
+  date: string,
+  time: string,
+  type: ReservationType,
+  number: ReservationNumber,
+  note?: string | null,
+  price?: ReservationPrice | null,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export type ReservationNumber = {
+  __typename: "ReservationNumber",
+  adults: number,
+  children: number,
+};
+
+export type ReservationPrice = {
+  __typename: "ReservationPrice",
+  bentoId: string,
+  adults?: number | null,
+  children?: number | null,
+};
+
+export type UpdateReservationContentInput = {
+  id: string,
+  name?: string | null,
+  date?: string | null,
+  time?: string | null,
+  type?: ReservationType | null,
+  number?: ReservationNumberInput | null,
+  note?: string | null,
+  price?: ReservationPriceInput | null,
+};
+
+export type DeleteReservationContentInput = {
+  id: string,
+};
+
 export type ModelCalenderDateFilterInput = {
   id?: ModelIDInput | null,
   date?: ModelStringInput | null,
@@ -320,6 +408,24 @@ export type ModelBentoFilterInput = {
 export type ModelBentoConnection = {
   __typename: "ModelBentoConnection",
   items:  Array<Bento | null >,
+  nextToken?: string | null,
+};
+
+export type ModelReservationContentFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  date?: ModelStringInput | null,
+  time?: ModelStringInput | null,
+  type?: ModelReservationTypeInput | null,
+  note?: ModelStringInput | null,
+  and?: Array< ModelReservationContentFilterInput | null > | null,
+  or?: Array< ModelReservationContentFilterInput | null > | null,
+  not?: ModelReservationContentFilterInput | null,
+};
+
+export type ModelReservationContentConnection = {
+  __typename: "ModelReservationContentConnection",
+  items:  Array<ReservationContent | null >,
   nextToken?: string | null,
 };
 
@@ -560,6 +666,99 @@ export type DeleteBentoMutation = {
   } | null,
 };
 
+export type CreateReservationContentMutationVariables = {
+  input: CreateReservationContentInput,
+  condition?: ModelReservationContentConditionInput | null,
+};
+
+export type CreateReservationContentMutation = {
+  createReservationContent?:  {
+    __typename: "ReservationContent",
+    id: string,
+    name: string,
+    date: string,
+    time: string,
+    type: ReservationType,
+    number:  {
+      __typename: "ReservationNumber",
+      adults: number,
+      children: number,
+    },
+    note?: string | null,
+    price?:  {
+      __typename: "ReservationPrice",
+      bentoId: string,
+      adults?: number | null,
+      children?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateReservationContentMutationVariables = {
+  input: UpdateReservationContentInput,
+  condition?: ModelReservationContentConditionInput | null,
+};
+
+export type UpdateReservationContentMutation = {
+  updateReservationContent?:  {
+    __typename: "ReservationContent",
+    id: string,
+    name: string,
+    date: string,
+    time: string,
+    type: ReservationType,
+    number:  {
+      __typename: "ReservationNumber",
+      adults: number,
+      children: number,
+    },
+    note?: string | null,
+    price?:  {
+      __typename: "ReservationPrice",
+      bentoId: string,
+      adults?: number | null,
+      children?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteReservationContentMutationVariables = {
+  input: DeleteReservationContentInput,
+  condition?: ModelReservationContentConditionInput | null,
+};
+
+export type DeleteReservationContentMutation = {
+  deleteReservationContent?:  {
+    __typename: "ReservationContent",
+    id: string,
+    name: string,
+    date: string,
+    time: string,
+    type: ReservationType,
+    number:  {
+      __typename: "ReservationNumber",
+      adults: number,
+      children: number,
+    },
+    note?: string | null,
+    price?:  {
+      __typename: "ReservationPrice",
+      bentoId: string,
+      adults?: number | null,
+      children?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
 export type GetCalenderDateQueryVariables = {
   id: string,
 };
@@ -763,6 +962,72 @@ export type ListBentosQuery = {
   } | null,
 };
 
+export type GetReservationContentQueryVariables = {
+  id: string,
+};
+
+export type GetReservationContentQuery = {
+  getReservationContent?:  {
+    __typename: "ReservationContent",
+    id: string,
+    name: string,
+    date: string,
+    time: string,
+    type: ReservationType,
+    number:  {
+      __typename: "ReservationNumber",
+      adults: number,
+      children: number,
+    },
+    note?: string | null,
+    price?:  {
+      __typename: "ReservationPrice",
+      bentoId: string,
+      adults?: number | null,
+      children?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListReservationContentsQueryVariables = {
+  filter?: ModelReservationContentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListReservationContentsQuery = {
+  listReservationContents?:  {
+    __typename: "ModelReservationContentConnection",
+    items:  Array< {
+      __typename: "ReservationContent",
+      id: string,
+      name: string,
+      date: string,
+      time: string,
+      type: ReservationType,
+      number:  {
+        __typename: "ReservationNumber",
+        adults: number,
+        children: number,
+      },
+      note?: string | null,
+      price?:  {
+        __typename: "ReservationPrice",
+        bentoId: string,
+        adults?: number | null,
+        children?: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type OnCreateCalenderDateSubscription = {
   onCreateCalenderDate?:  {
     __typename: "CalenderDate",
@@ -952,5 +1217,95 @@ export type OnDeleteBentoSubscription = {
     } | null >,
     createdAt: string,
     updatedAt: string,
+  } | null,
+};
+
+export type OnCreateReservationContentSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnCreateReservationContentSubscription = {
+  onCreateReservationContent?:  {
+    __typename: "ReservationContent",
+    id: string,
+    name: string,
+    date: string,
+    time: string,
+    type: ReservationType,
+    number:  {
+      __typename: "ReservationNumber",
+      adults: number,
+      children: number,
+    },
+    note?: string | null,
+    price?:  {
+      __typename: "ReservationPrice",
+      bentoId: string,
+      adults?: number | null,
+      children?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateReservationContentSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnUpdateReservationContentSubscription = {
+  onUpdateReservationContent?:  {
+    __typename: "ReservationContent",
+    id: string,
+    name: string,
+    date: string,
+    time: string,
+    type: ReservationType,
+    number:  {
+      __typename: "ReservationNumber",
+      adults: number,
+      children: number,
+    },
+    note?: string | null,
+    price?:  {
+      __typename: "ReservationPrice",
+      bentoId: string,
+      adults?: number | null,
+      children?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteReservationContentSubscriptionVariables = {
+  owner?: string | null,
+};
+
+export type OnDeleteReservationContentSubscription = {
+  onDeleteReservationContent?:  {
+    __typename: "ReservationContent",
+    id: string,
+    name: string,
+    date: string,
+    time: string,
+    type: ReservationType,
+    number:  {
+      __typename: "ReservationNumber",
+      adults: number,
+      children: number,
+    },
+    note?: string | null,
+    price?:  {
+      __typename: "ReservationPrice",
+      bentoId: string,
+      adults?: number | null,
+      children?: number | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
   } | null,
 };

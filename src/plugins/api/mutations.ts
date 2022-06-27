@@ -206,3 +206,84 @@ export const deleteBento = /* GraphQL */ `
     }
   }
 `;
+export const createReservationContent = /* GraphQL */ `
+  mutation CreateReservationContent(
+    $input: CreateReservationContentInput!
+    $condition: ModelReservationContentConditionInput
+  ) {
+    createReservationContent(input: $input, condition: $condition) {
+      id
+      name
+      date
+      time
+      type
+      number {
+        adults
+        children
+      }
+      note
+      price {
+        bentoId
+        adults
+        children
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateReservationContent = /* GraphQL */ `
+  mutation UpdateReservationContent(
+    $input: UpdateReservationContentInput!
+    $condition: ModelReservationContentConditionInput
+  ) {
+    updateReservationContent(input: $input, condition: $condition) {
+      id
+      name
+      date
+      time
+      type
+      number {
+        adults
+        children
+      }
+      note
+      price {
+        bentoId
+        adults
+        children
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteReservationContent = /* GraphQL */ `
+  mutation DeleteReservationContent(
+    $input: DeleteReservationContentInput!
+    $condition: ModelReservationContentConditionInput
+  ) {
+    deleteReservationContent(input: $input, condition: $condition) {
+      id
+      name
+      date
+      time
+      type
+      number {
+        adults
+        children
+      }
+      note
+      price {
+        bentoId
+        adults
+        children
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

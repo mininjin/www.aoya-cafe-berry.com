@@ -5,6 +5,7 @@ type CalenderDate
   @auth(
     rules: [
       { allow: public, operations: [read], provider: iam }
+      { allow: private, operations: [read], provider: oidc }
       { allow: groups, groups: ["Admin", "cafe-berry"] }
     ]
   ) {
@@ -37,7 +38,8 @@ type Article
   @model
   @auth(
     rules: [
-      { allow: public, provider: iam, operations: [read] }
+      { allow: public, operations: [read], provider: iam }
+      { allow: private, operations: [read], provider: oidc }
       { allow: groups, groups: ["Admin", "cafe-berry"] }
     ]
   ) {
@@ -59,7 +61,8 @@ type Bento
   @model
   @auth(
     rules: [
-      { allow: public, provider: iam, operations: [read] }
+      { allow: public, operations: [read], provider: iam }
+      { allow: private, operations: [read], provider: oidc }
       { allow: groups, groups: ["Admin", "cafe-berry"] }
     ]
   ) {
@@ -82,4 +85,39 @@ type S3Object {
 
 enum ArticleType {
   DEFAULT
+}
+
+type ReservationContent
+  @model
+  @auth(
+    rules: [
+      { allow: owner, provider: oidc, identityClaim: "sub" }
+      { allow: groups, groups: ["Admin", "cafe-berry"] }
+    ]
+  ) {
+  id: ID!
+  name: String!
+  date: String!
+  time: String!
+  type: ReservationType!
+  number: ReservationNumber!
+  note: String
+  price: ReservationPrice
+}
+
+type ReservationNumber {
+  adults: Int!
+  children: Int!
+}
+
+type ReservationPrice {
+  bentoId: String!
+  adults: Int
+  children: Int
+}
+
+enum ReservationType {
+  LUNCH
+  TEE
+  BENTO
 }

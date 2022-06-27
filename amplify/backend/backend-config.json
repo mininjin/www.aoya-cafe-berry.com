@@ -24,22 +24,24 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authaoyacafeberrydea84a31"
+            "authenticationType": "OPENID_CONNECT",
+            "openIDConnectConfig": {
+              "name": "LINE",
+              "issuerUrl": "https://access.line.me/",
+              "clientId": "1657240358|1657042396",
+              "authTTL": "0",
+              "iatTTL": "0"
             }
           },
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "AWS_IAM"
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authaoyacafeberrydea84a31"
+              }
             },
             {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 7,
-                "apiKeyExpirationDate": "2022-06-02T05:02:23.176Z",
-                "description": "public"
-              }
+              "authenticationType": "AWS_IAM"
             }
           ]
         }
