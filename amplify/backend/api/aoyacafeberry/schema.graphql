@@ -98,7 +98,7 @@ type ReservationContent
   ) {
   id: ID!
   name: String!
-  date: String!
+  date: AWSDate!
   time: String!
   type: ReservationType!
   number: ReservationNumber!
