@@ -12,7 +12,10 @@
         café Berry
       </div>
       <div class="flex items-center flex-grow-0" @click="toggleMenu">
-        <span class="p-2 rounded-lg font-header text-sub bg-white text-xl border-4 border-sub shadow-xl">メニュー</span>
+        <span class="p-2 font-header text-sub text-sm flex flex-col items-center justify-center">
+          <font-awesome-icon icon="bars" class="w-6 h-6" />
+          MENU
+        </span>
       </div>
     </div>
   </div>
@@ -45,11 +48,16 @@
           </div>
           <button type="button" class="flex items-center flex-grow-0 lg:opacity-0" :disabled="!menu"
             @click="toggleMenu">
-            <span class="p-2 rounded-lg font-header text-sub bg-white text-xl border-4 border-sub shadow-xl lg:hidden">
-              <transition enter-active-class="transition-all duration-500" enter-from-class="opacity-0"
-                enter-to-class="opacity-1" mode="out-in">
-                <span v-if="menu">閉じる</span>
-                <span v-else>メニュー</span>
+            <span class="p-2 font-header text-sub text-sm lg:hidden">
+              <transition enter-active-class="transition-all duration-500" enter-from-class="opacity-0" mode="out-in">
+                <span v-if="menu" class="flex flex-col items-center justify-center">
+                  <font-awesome-icon icon="xmark" class="w-6 h-6" />
+                  CLOSE
+                </span>
+                <span v-else>
+                  <font-awesome-icon icon="bars" class="w-6 h-6" />
+                  MENU
+                </span>
               </transition>
             </span>
           </button>
@@ -100,6 +108,7 @@
 <script lang="ts" setup>
 import { ROUTE } from "@/router";
 import { ref } from "vue";
+import FontAwesomeIcon from "@/plugins/fontaowsome/FontAwesomeIcon.vue";
 
 const { HOME, BENTO, LINK, INFORMATION, CONCEPT } = ROUTE;
 const menu = ref(false);
