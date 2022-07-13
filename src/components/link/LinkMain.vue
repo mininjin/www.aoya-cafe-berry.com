@@ -1,10 +1,12 @@
 <template>
   <div class="py-10 flex flex-wrap">
     <a v-for="(item, i) in list" :key="item.key" :href="item.href" target="_blank" rel="noopener noreferrer"
-      class="w-full md:w-1/2 p-5 transition-all">
+      class="w-1/2 sm:w-1/3 p-5 transition-all">
       <img :src="item.src" :alt="item.name" class="object-contain w-full" />
-      <div class="w-full p-3 font-strong text-xl underline text-center">
-        {{ item.name }}
+      <div class="w-full p-3 font-strong text-xl underline flex items-center justify-center">
+        <span class="text-left">
+          {{ item.name }}
+        </span>
       </div>
     </a>
   </div>

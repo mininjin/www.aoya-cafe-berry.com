@@ -2,11 +2,9 @@
   <div class="py-10 overflow-hidden w-full">
     <div :class="` transition-all duration-2000 ${bentoOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
     }`" ref="bentoContainer">
-      <div class="my-10 h-56 p-2 flex">
-        <div class="flex-grow-[2]"></div>
+      <div class="my-10 p-2">
         <img src="@/assets/images/bento/bento_bottom.webp" alt="お弁当のお問い合わせは0857-86-0515まで"
-          class="h-full object-contain rounded-lg" />
-        <div class="flex-grow"></div>
+          class="w-full object-cover rounded-lg" />
       </div>
       <div class="flex items-stretch">
         <div class="w-1/12"></div>

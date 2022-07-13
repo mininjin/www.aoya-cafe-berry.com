@@ -15,7 +15,7 @@
     <div class="my-16">
       <ConceptLunch />
       <div class="flex items-stretch">
-        <div class="w-1/6"></div>
+        <div class="w-1/12"></div>
         <div class="w-4/6 py-3 text-white">
           <h2 class="text-3xl mb-2 font-strong">一番人気</h2>
           <p>
@@ -28,7 +28,7 @@
     <div class="my-16">
       <ConceptSweets />
       <div class="flex items-stretch">
-        <div class="w-1/8"></div>
+        <div class="w-1/12"></div>
         <div class="w-4/6 py-3 text-white">
           <h2 class="text-3xl mb-2 font-strong">ケーキやプリン</h2>
           <p class="mb-2">
