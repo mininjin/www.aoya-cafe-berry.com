@@ -51,12 +51,17 @@
 
 <script setup lang="ts">
 import { ArticleState, ArticleStateKey } from '@/store/article';
-import { inject, onMounted } from 'vue';
+import { computed, inject, onMounted } from 'vue';
 import FontAwesomeIcon from '@/plugins/fontaowsome/FontAwesomeIcon.vue';
 import Loading from '@/components/UI/Loading.vue';
 import utils from '@/plugins/utils';
+import { useRoute } from 'vue-router';
+import { DATE_SPLITTER } from '@/constants';
+import router, { ROUTE } from '@/router';
 
 const DECEMBER = 12;
+const route = useRoute();
+const yearMonth = computed<string | undefined>(() => route.query.date?.toString());
 const [thisYear, thisMonth] = utils.getDatePayload(new Date());
 const isFuture = () => {
   const next = new Date(year.value, month.value + 1);
@@ -78,6 +83,7 @@ const changeMonth = async (direction: 1 | -1) => {
     month.value = nextMonth
   }
   await search()
+  router.push(ROUTE.INFORMATION + "?date=" + [year.value, month.value].join(DATE_SPLITTER))
 }
 
 const search = async () => {
@@ -86,6 +92,10 @@ const search = async () => {
 }
 
 onMounted(async () => {
+  if (yearMonth.value) {
+    const [y, m] = yearMonth.value.split(DATE_SPLITTER).map(v => parseInt(v))
+    if (!(isNaN(y) || isNaN(m))) year.value = y, month.value = m;
+  }
   await search();
 });
 

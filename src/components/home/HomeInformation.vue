@@ -6,13 +6,15 @@
         <Loading class="text-sub" />
       </div>
       <div v-else class="px-4 max-w-lg mx-auto">
-        <div v-for="article in articles" class="mb-4 bg-tertiary p-4 rounded-lg shadow border-sub-0.5 border-2">
+        <router-link v-for="article in list"
+          class="mb-4 bg-tertiary p-4 rounded-lg shadow border-sub-0.5 border-2 block"
+          :to="ROUTE.INFORMATION + '?date=' + article.publishedAt" @click="scrollToTop">
           <h2 class="mb-2 text-xl font-bold">{{ article.title }}</h2>
           <div class="flex items-stretch space-x-4 text-left w-full h-32">
             <img :src="article.thumbnail.image"
               class="h-full aspect-square object-cover object-center flex-grow-0 flex-shrink-0" :alt="article.title">
             <div class="text-left flex-shrink flex flex-col justify-center h-full overflow-hidden">
-              <p class="mb-2">{{ utils.getDateFromDateTime(article.publishedAt) }}</p>
+              <p class="mb-2">{{ article.publishedAt }}</p>
               <p class="text-lg w-full overflow-hidden flex-1">
                 <span class="inline-block text-ellipsis break-all break-words h-21 w-full overflow-hidden line-clamp-3">
                   {{ article.content }}
@@ -20,7 +22,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </router-link>
         <div class="mt-8 flex items-center justify-center">
           <router-link :to="ROUTE.INFORMATION" class="w-full p-2 text-center bg-sub text-white shadow-bold rounded-xl"
             @click="scrollToTop">もっと見る
@@ -33,13 +35,14 @@
 
 <script setup lang="ts">
 import SectionTitle from '@/components/UI/SectionTitle.vue';
-import { inject, onMounted, ref } from 'vue';
+import { computed, inject, onMounted, ref } from 'vue';
 import utils from '@/plugins/utils';
 import { ArticleState, ArticleStateKey } from '@/store/article';
 import { ROUTE } from "@/router"
 
 const loading = ref(false);
 const { articles, setArticles, init } = inject(ArticleStateKey) as ArticleState;
+const list = computed(() => articles.value.map(v => ({ title: v.title, content: v.content, thumbnail: v.thumbnail, publishedAt: utils.getDateFromDateTime(v.publishedAt) })));
 
 const scrollToTop = () => window.scrollTo({ top: 0 });
 
