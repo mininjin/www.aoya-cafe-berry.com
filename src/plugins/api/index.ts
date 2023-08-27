@@ -31,9 +31,15 @@ import { GraphQLResult } from "@aws-amplify/api-graphql";
 import auth from "@/plugins/auth";
 
 export default {
-  getCalenderDatum: async (between: [string, string]) => {
+  getCalenderDatum: async (
+    between: [string, string],
+    limit?: number,
+    nextToken?: string
+  ) => {
     const variables: ListCalenderDatesQueryVariables = {
       filter: { date: { between } },
+      limit,
+      nextToken,
     };
     const isAuthenticated = await auth.isAuthenticated();
     return (await API.graphql({

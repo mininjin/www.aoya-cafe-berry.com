@@ -49,12 +49,28 @@ export default () => {
     ) {
       between = getDateBetween();
       const { data } = await api.getCalenderDatum(
-        between.map((v) => utils.getDateString(v)) as [string, string]
+        between.map((v) => utils.getDateString(v)) as [string, string],
+        100
       );
+      let nextToken = data?.listCalenderDates?.nextToken;
       dateDatum =
         (data?.listCalenderDates?.items.filter(
           (v) => v != undefined
         ) as CalenderDate[]) || [];
+      for (let i = 0; i < 10; i++) {
+        if (!nextToken) break;
+        const { data } = await api.getCalenderDatum(
+          between.map((v) => utils.getDateString(v)) as [string, string],
+          100,
+          nextToken
+        );
+        nextToken = data?.listCalenderDates?.nextToken;
+        dateDatum = dateDatum.concat(
+          (data?.listCalenderDates?.items.filter(
+            (v) => v != undefined
+          ) as CalenderDate[]) || []
+        );
+      }
     }
     //
     const weekElements = [];
