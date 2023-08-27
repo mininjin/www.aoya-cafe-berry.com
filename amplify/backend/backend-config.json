@@ -54,6 +54,184 @@
       "service": "S3AndCloudFront"
     }
   },
+  "parameters": {
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberry9de9a44d_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberry9de9a44d"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    },
+    "AMPLIFY_auth_aoyacafeberrydea84a31_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "aoyacafeberrydea84a31"
+        }
+      ]
+    }
+  },
   "storage": {
     "resources": {
       "dependsOn": [],
