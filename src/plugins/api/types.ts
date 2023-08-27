@@ -418,6 +418,80 @@ export type ModelReservationContentConnection = {
   nextToken?: string | null,
 };
 
+export type ModelSubscriptionCalenderDateFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  date?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  isRest?: ModelSubscriptionBooleanInput | null,
+  isHoliday?: ModelSubscriptionBooleanInput | null,
+  and?: Array< ModelSubscriptionCalenderDateFilterInput | null > | null,
+  or?: Array< ModelSubscriptionCalenderDateFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+};
+
+export type ModelSubscriptionArticleFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  type?: ModelSubscriptionStringInput | null,
+  publishedYearMonth?: ModelSubscriptionStringInput | null,
+  publishedAt?: ModelSubscriptionStringInput | null,
+  content?: ModelSubscriptionStringInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionArticleFilterInput | null > | null,
+  or?: Array< ModelSubscriptionArticleFilterInput | null > | null,
+};
+
+export type ModelSubscriptionBentoFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionBentoFilterInput | null > | null,
+  or?: Array< ModelSubscriptionBentoFilterInput | null > | null,
+};
+
+export type ModelSubscriptionReservationContentFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  date?: ModelSubscriptionStringInput | null,
+  time?: ModelSubscriptionStringInput | null,
+  type?: ModelSubscriptionStringInput | null,
+  note?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionReservationContentFilterInput | null > | null,
+  or?: Array< ModelSubscriptionReservationContentFilterInput | null > | null,
+};
+
 export type CreateCalenderDateMutationVariables = {
   input: CreateCalenderDateInput,
   condition?: ModelCalenderDateConditionInput | null,
@@ -1022,6 +1096,10 @@ export type ListReservationContentsQuery = {
   } | null,
 };
 
+export type OnCreateCalenderDateSubscriptionVariables = {
+  filter?: ModelSubscriptionCalenderDateFilterInput | null,
+};
+
 export type OnCreateCalenderDateSubscription = {
   onCreateCalenderDate?:  {
     __typename: "CalenderDate",
@@ -1043,6 +1121,10 @@ export type OnCreateCalenderDateSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnUpdateCalenderDateSubscriptionVariables = {
+  filter?: ModelSubscriptionCalenderDateFilterInput | null,
 };
 
 export type OnUpdateCalenderDateSubscription = {
@@ -1068,6 +1150,10 @@ export type OnUpdateCalenderDateSubscription = {
   } | null,
 };
 
+export type OnDeleteCalenderDateSubscriptionVariables = {
+  filter?: ModelSubscriptionCalenderDateFilterInput | null,
+};
+
 export type OnDeleteCalenderDateSubscription = {
   onDeleteCalenderDate?:  {
     __typename: "CalenderDate",
@@ -1091,6 +1177,10 @@ export type OnDeleteCalenderDateSubscription = {
   } | null,
 };
 
+export type OnCreateArticleSubscriptionVariables = {
+  filter?: ModelSubscriptionArticleFilterInput | null,
+};
+
 export type OnCreateArticleSubscription = {
   onCreateArticle?:  {
     __typename: "Article",
@@ -1109,6 +1199,10 @@ export type OnCreateArticleSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnUpdateArticleSubscriptionVariables = {
+  filter?: ModelSubscriptionArticleFilterInput | null,
 };
 
 export type OnUpdateArticleSubscription = {
@@ -1131,6 +1225,10 @@ export type OnUpdateArticleSubscription = {
   } | null,
 };
 
+export type OnDeleteArticleSubscriptionVariables = {
+  filter?: ModelSubscriptionArticleFilterInput | null,
+};
+
 export type OnDeleteArticleSubscription = {
   onDeleteArticle?:  {
     __typename: "Article",
@@ -1149,6 +1247,10 @@ export type OnDeleteArticleSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnCreateBentoSubscriptionVariables = {
+  filter?: ModelSubscriptionBentoFilterInput | null,
 };
 
 export type OnCreateBentoSubscription = {
@@ -1173,6 +1275,10 @@ export type OnCreateBentoSubscription = {
   } | null,
 };
 
+export type OnUpdateBentoSubscriptionVariables = {
+  filter?: ModelSubscriptionBentoFilterInput | null,
+};
+
 export type OnUpdateBentoSubscription = {
   onUpdateBento?:  {
     __typename: "Bento",
@@ -1193,6 +1299,10 @@ export type OnUpdateBentoSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnDeleteBentoSubscriptionVariables = {
+  filter?: ModelSubscriptionBentoFilterInput | null,
 };
 
 export type OnDeleteBentoSubscription = {
@@ -1218,6 +1328,7 @@ export type OnDeleteBentoSubscription = {
 };
 
 export type OnCreateReservationContentSubscriptionVariables = {
+  filter?: ModelSubscriptionReservationContentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1248,6 +1359,7 @@ export type OnCreateReservationContentSubscription = {
 };
 
 export type OnUpdateReservationContentSubscriptionVariables = {
+  filter?: ModelSubscriptionReservationContentFilterInput | null,
   owner?: string | null,
 };
 
@@ -1278,6 +1390,7 @@ export type OnUpdateReservationContentSubscription = {
 };
 
 export type OnDeleteReservationContentSubscriptionVariables = {
+  filter?: ModelSubscriptionReservationContentFilterInput | null,
   owner?: string | null,
 };
 

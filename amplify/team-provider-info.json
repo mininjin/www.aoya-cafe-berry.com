@@ -39,6 +39,15 @@
           "unauthRoleArn": "arn:aws:iam::983035574532:role/Cognito_0tawebUnauth_Role",
           "unauthRoleName": "Cognito_0tawebUnauth_Role"
         }
+      },
+      "api": {
+        "aoyacafeberry": {}
+      },
+      "storage": {
+        "resources": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
       }
     }
   }

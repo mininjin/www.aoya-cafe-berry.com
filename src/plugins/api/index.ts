@@ -19,7 +19,7 @@ import {
   DeleteArticleMutationVariables,
 } from "./types";
 import { API, graphqlOperation } from "aws-amplify";
-import { listCalenderDates, articleByPublishedAt } from "./queries";
+import { listCalenderDates, ArticleByPublishedAt } from "./queries";
 import {
   updateCalenderDate,
   createCalenderDate,
@@ -65,7 +65,7 @@ export default {
     };
     const isAuthenticated = await auth.isAuthenticated();
     return (await API.graphql({
-      ...graphqlOperation(articleByPublishedAt, variables),
+      ...graphqlOperation(ArticleByPublishedAt, variables),
       authMode: isAuthenticated ? "AMAZON_COGNITO_USER_POOLS" : "AWS_IAM",
     })) as GraphQLResult<ArticleByPublishedAtQuery>;
   },

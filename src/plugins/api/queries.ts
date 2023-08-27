@@ -13,13 +13,16 @@ export const getCalenderDate = /* GraphQL */ `
       unusualOpening {
         start
         end
+        __typename
       }
       reservation {
         lunch
         bento
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -39,15 +42,19 @@ export const listCalenderDates = /* GraphQL */ `
         unusualOpening {
           start
           end
+          __typename
         }
         reservation {
           lunch
           bento
+          __typename
         }
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -64,9 +71,11 @@ export const getArticle = /* GraphQL */ `
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -88,15 +97,18 @@ export const listArticles = /* GraphQL */ `
           bucket
           region
           key
+          __typename
         }
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
-export const articleByPublishedAt = /* GraphQL */ `
+export const ArticleByPublishedAt = /* GraphQL */ `
   query ArticleByPublishedAt(
     $type: ArticleType!
     $publishedAt: ModelStringKeyConditionInput
@@ -124,11 +136,14 @@ export const articleByPublishedAt = /* GraphQL */ `
           bucket
           region
           key
+          __typename
         }
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -141,14 +156,17 @@ export const getBento = /* GraphQL */ `
         adult
         child
         bentoId
+        __typename
       }
       images {
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -166,16 +184,20 @@ export const listBentos = /* GraphQL */ `
           adult
           child
           bentoId
+          __typename
         }
         images {
           bucket
           region
           key
+          __typename
         }
         createdAt
         updatedAt
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;
@@ -190,16 +212,19 @@ export const getReservationContent = /* GraphQL */ `
       number {
         adults
         children
+        __typename
       }
       note
       price {
         adult
         child
         bentoId
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -223,18 +248,22 @@ export const listReservationContents = /* GraphQL */ `
         number {
           adults
           children
+          __typename
         }
         note
         price {
           adult
           child
           bentoId
+          __typename
         }
         createdAt
         updatedAt
         owner
+        __typename
       }
       nextToken
+      __typename
     }
   }
 `;

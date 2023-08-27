@@ -3,8 +3,10 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateCalenderDate = /* GraphQL */ `
-  subscription OnCreateCalenderDate {
-    onCreateCalenderDate {
+  subscription OnCreateCalenderDate(
+    $filter: ModelSubscriptionCalenderDateFilterInput
+  ) {
+    onCreateCalenderDate(filter: $filter) {
       id
       date
       description
@@ -13,19 +15,24 @@ export const onCreateCalenderDate = /* GraphQL */ `
       unusualOpening {
         start
         end
+        __typename
       }
       reservation {
         lunch
         bento
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onUpdateCalenderDate = /* GraphQL */ `
-  subscription OnUpdateCalenderDate {
-    onUpdateCalenderDate {
+  subscription OnUpdateCalenderDate(
+    $filter: ModelSubscriptionCalenderDateFilterInput
+  ) {
+    onUpdateCalenderDate(filter: $filter) {
       id
       date
       description
@@ -34,19 +41,24 @@ export const onUpdateCalenderDate = /* GraphQL */ `
       unusualOpening {
         start
         end
+        __typename
       }
       reservation {
         lunch
         bento
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onDeleteCalenderDate = /* GraphQL */ `
-  subscription OnDeleteCalenderDate {
-    onDeleteCalenderDate {
+  subscription OnDeleteCalenderDate(
+    $filter: ModelSubscriptionCalenderDateFilterInput
+  ) {
+    onDeleteCalenderDate(filter: $filter) {
       id
       date
       description
@@ -55,19 +67,22 @@ export const onDeleteCalenderDate = /* GraphQL */ `
       unusualOpening {
         start
         end
+        __typename
       }
       reservation {
         lunch
         bento
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onCreateArticle = /* GraphQL */ `
-  subscription OnCreateArticle {
-    onCreateArticle {
+  subscription OnCreateArticle($filter: ModelSubscriptionArticleFilterInput) {
+    onCreateArticle(filter: $filter) {
       id
       type
       publishedYearMonth
@@ -78,15 +93,17 @@ export const onCreateArticle = /* GraphQL */ `
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onUpdateArticle = /* GraphQL */ `
-  subscription OnUpdateArticle {
-    onUpdateArticle {
+  subscription OnUpdateArticle($filter: ModelSubscriptionArticleFilterInput) {
+    onUpdateArticle(filter: $filter) {
       id
       type
       publishedYearMonth
@@ -97,15 +114,17 @@ export const onUpdateArticle = /* GraphQL */ `
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onDeleteArticle = /* GraphQL */ `
-  subscription OnDeleteArticle {
-    onDeleteArticle {
+  subscription OnDeleteArticle($filter: ModelSubscriptionArticleFilterInput) {
+    onDeleteArticle(filter: $filter) {
       id
       type
       publishedYearMonth
@@ -116,75 +135,89 @@ export const onDeleteArticle = /* GraphQL */ `
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onCreateBento = /* GraphQL */ `
-  subscription OnCreateBento {
-    onCreateBento {
+  subscription OnCreateBento($filter: ModelSubscriptionBentoFilterInput) {
+    onCreateBento(filter: $filter) {
       id
       description
       price {
         adult
         child
         bentoId
+        __typename
       }
       images {
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onUpdateBento = /* GraphQL */ `
-  subscription OnUpdateBento {
-    onUpdateBento {
+  subscription OnUpdateBento($filter: ModelSubscriptionBentoFilterInput) {
+    onUpdateBento(filter: $filter) {
       id
       description
       price {
         adult
         child
         bentoId
+        __typename
       }
       images {
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onDeleteBento = /* GraphQL */ `
-  subscription OnDeleteBento {
-    onDeleteBento {
+  subscription OnDeleteBento($filter: ModelSubscriptionBentoFilterInput) {
+    onDeleteBento(filter: $filter) {
       id
       description
       price {
         adult
         child
         bentoId
+        __typename
       }
       images {
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
 export const onCreateReservationContent = /* GraphQL */ `
-  subscription OnCreateReservationContent($owner: String) {
-    onCreateReservationContent(owner: $owner) {
+  subscription OnCreateReservationContent(
+    $filter: ModelSubscriptionReservationContentFilterInput
+    $owner: String
+  ) {
+    onCreateReservationContent(filter: $filter, owner: $owner) {
       id
       name
       date
@@ -193,22 +226,28 @@ export const onCreateReservationContent = /* GraphQL */ `
       number {
         adults
         children
+        __typename
       }
       note
       price {
         adult
         child
         bentoId
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
 export const onUpdateReservationContent = /* GraphQL */ `
-  subscription OnUpdateReservationContent($owner: String) {
-    onUpdateReservationContent(owner: $owner) {
+  subscription OnUpdateReservationContent(
+    $filter: ModelSubscriptionReservationContentFilterInput
+    $owner: String
+  ) {
+    onUpdateReservationContent(filter: $filter, owner: $owner) {
       id
       name
       date
@@ -217,22 +256,28 @@ export const onUpdateReservationContent = /* GraphQL */ `
       number {
         adults
         children
+        __typename
       }
       note
       price {
         adult
         child
         bentoId
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
 export const onDeleteReservationContent = /* GraphQL */ `
-  subscription OnDeleteReservationContent($owner: String) {
-    onDeleteReservationContent(owner: $owner) {
+  subscription OnDeleteReservationContent(
+    $filter: ModelSubscriptionReservationContentFilterInput
+    $owner: String
+  ) {
+    onDeleteReservationContent(filter: $filter, owner: $owner) {
       id
       name
       date
@@ -241,16 +286,19 @@ export const onDeleteReservationContent = /* GraphQL */ `
       number {
         adults
         children
+        __typename
       }
       note
       price {
         adult
         child
         bentoId
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;

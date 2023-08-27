@@ -16,13 +16,16 @@ export const createCalenderDate = /* GraphQL */ `
       unusualOpening {
         start
         end
+        __typename
       }
       reservation {
         lunch
         bento
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -40,13 +43,16 @@ export const updateCalenderDate = /* GraphQL */ `
       unusualOpening {
         start
         end
+        __typename
       }
       reservation {
         lunch
         bento
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -64,13 +70,16 @@ export const deleteCalenderDate = /* GraphQL */ `
       unusualOpening {
         start
         end
+        __typename
       }
       reservation {
         lunch
         bento
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -90,9 +99,11 @@ export const createArticle = /* GraphQL */ `
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -112,9 +123,11 @@ export const updateArticle = /* GraphQL */ `
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -134,9 +147,11 @@ export const deleteArticle = /* GraphQL */ `
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -152,14 +167,17 @@ export const createBento = /* GraphQL */ `
         adult
         child
         bentoId
+        __typename
       }
       images {
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -175,14 +193,17 @@ export const updateBento = /* GraphQL */ `
         adult
         child
         bentoId
+        __typename
       }
       images {
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -198,14 +219,17 @@ export const deleteBento = /* GraphQL */ `
         adult
         child
         bentoId
+        __typename
       }
       images {
         bucket
         region
         key
+        __typename
       }
       createdAt
       updatedAt
+      __typename
     }
   }
 `;
@@ -223,16 +247,19 @@ export const createReservationContent = /* GraphQL */ `
       number {
         adults
         children
+        __typename
       }
       note
       price {
         adult
         child
         bentoId
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -250,16 +277,19 @@ export const updateReservationContent = /* GraphQL */ `
       number {
         adults
         children
+        __typename
       }
       note
       price {
         adult
         child
         bentoId
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
@@ -277,16 +307,19 @@ export const deleteReservationContent = /* GraphQL */ `
       number {
         adults
         children
+        __typename
       }
       note
       price {
         adult
         child
         bentoId
+        __typename
       }
       createdAt
       updatedAt
       owner
+      __typename
     }
   }
 `;
